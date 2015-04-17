@@ -1,0 +1,62 @@
+body,div,ul,li,a,span,p{
+	padding: 0;
+	margin: 0;
+}
+
+body,html{
+	width: 100%;
+	height: 100%;
+}
+
+a{
+	color: #7F7A7A;
+	text-decoration: none;
+}
+
+.clear{
+	clear: both;
+}
+
+#canvas{
+    width: 100%;
+    height: 70%;
+}
+
+.move-mid a{
+	width: 65px;
+	float: left;
+}
+
+.fixed-l,.fixed-r{
+	float: left;
+	width: 15%;
+	height: 100%;
+}
+
+.fixed-l a,.fixed-r a,.move-mid a{
+	display: block;
+	height: 100%;
+	line-height: 100%;
+    text-align: center;
+	border-right: 1px solid #DCD5D5;
+}
+
+.move-mid{
+	overflow: hidden;/*超出视图的标签暂时把它隐藏了~*/
+	height: 100%;
+	width: 70%;
+	float: left;
+}
+
+.selectionBar,.toolBar{
+    height: 15%;
+    background: #DDE4DD;
+}
+
+.hide{
+	display: none;
+}
+
+.show{
+	display: block;
+}
