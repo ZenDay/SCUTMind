@@ -1,4 +1,4 @@
-body,div,ul,li,a,span,p{
+body,div,ul,li,a,span,p,img{
 	padding: 0;
 	margin: 0;
 }
@@ -9,7 +9,7 @@ body,html{
 }
 
 a{
-	color: #7F7A7A;
+	color: #33475f;
 	text-decoration: none;
 }
 
@@ -19,7 +19,7 @@ a{
 
 #canvas{
     width: 100%;
-    height: 70%;
+    height: 75%;
 }
 
 .move-mid a{
@@ -34,11 +34,12 @@ a{
 }
 
 .fixed-l a,.fixed-r a,.move-mid a{
+	font-size: 12px;
+    font-weight: 600;
 	display: block;
 	height: 100%;
 	line-height: 100%;
     text-align: center;
-	border-right: 1px solid #DCD5D5;
 }
 
 .move-mid{
@@ -49,8 +50,30 @@ a{
 }
 
 .selectionBar,.toolBar{
-    height: 15%;
-    background: #DDE4DD;
+	width: 100%;
+    background: #A6A6CC;
+}
+
+.selectionBar{
+	height: 9%;
+}
+
+.toolBar{
+	height: 16%;
+}
+
+#color,#theme{
+    height: 100%; 
+}
+
+#color a{
+	display: block;
+	width: 14%;
+	float: left;
+}
+
+#color img{
+	padding-left: 35%;
 }
 
 .hide{
