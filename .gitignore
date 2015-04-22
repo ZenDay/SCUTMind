@@ -1,2 +1,3 @@
 #Ignore webstorm's config files
 .idea/
+test.html
