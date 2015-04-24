@@ -1,11 +1,14 @@
-body,div,ul,li,a,span,p,img{
+html,body,div,ul,li,a,span,p,img,canvas{
 	padding: 0;
 	margin: 0;
+	font-family: "Helvetica";
 }
 
 body,html{
 	width: 100%;
 	height: 100%;
+	overflow-x: hidden;
+	overflow-y: hidden; 
 }
 
 a{
@@ -18,12 +21,11 @@ a{
 }
 
 #canvas{
-    width: 100%;
-    height: 75%;
+   border: 5px solid #8e8e8e;
 }
 
 .move-mid a{
-	width: 65px;
+	width: 45px;
 	float: left;
 }
 
@@ -35,10 +37,9 @@ a{
 
 .fixed-l a,.fixed-r a,.move-mid a{
 	font-size: 12px;
-    font-weight: 600;
+    font-weight: 500;
 	display: block;
 	height: 100%;
-	line-height: 100%;
     text-align: center;
 }
 
@@ -49,17 +50,25 @@ a{
 	float: left;
 }
 
-.selectionBar,.toolBar{
-	width: 100%;
-    background: #A6A6CC;
+.move-mid img{
+    /*padding: 7px 3px;
+    -webkit-box-shadow:0 0 10px #33475f;  
+    -moz-box-shadow:0 0 10px #33475f;  
+    box-shadow:0 0 10px #33475f; */
 }
 
-.selectionBar{
-	height: 9%;
+.selectionBar,.toolBar{
+	width: 100%;
 }
 
 .toolBar{
-	height: 16%;
+	height: 35px;
+	background :#505453;
+}
+
+.selectionBar{
+    height: 35px;
+    background-color: #EAE6E6;
 }
 
 #color,#theme{
@@ -70,10 +79,11 @@ a{
 	display: block;
 	width: 14%;
 	float: left;
+	height: 100%;
 }
 
 #color img{
-	padding-left: 35%;
+	margin-left: 32%;/*No modify please!*/
 }
 
 .hide{

@@ -3,36 +3,36 @@
 <head>
 	<meta charset="UTF-8">
 	<link rel="stylesheet" type="text/css" href="css/main.css">
+	<script type="text/javascript" src="jquery/jquery-1.11.2.min.js"></script>
 	<title>SCUTmind</title>
 </head>
 <body>
-	<canvas id="canvas" ></canvas>
-	<div id="toolBar" class="toolBar">
+	<canvas id="canvas">您的浏览器不支持canvas，请更换浏览器后尝试</canvas><div id="toolBar" class="toolBar">
 		<div class="fixed-l">
-			<a href="#" class="sideBar-btn"><img src="icons/menu.png" height="30" width="30"><br><span>menu</span></a>
+			<a href="#" class="sideBar-btn"><img src="icons/menu4.png" height="30" width="30"></a>
 		</div>
 		<div class="move-mid">
-			<a href="#" class="sibling-btn"><img src="icons/sibling.png" height="30" width="30"><br><span>sibling</span></a>
-			<a href="#" class="child-btn"><img src="icons/child.png" height="30" width="30"><br><span>child</span></a>
-			<a href="#" class="shape-btn"><img src="icons/theme.png" height="30" width="30"><br><span>theme</span></a>
-			<a href="#" class="fontcolor-btn"><img src="icons/fontcolor.png" height="30" width="30"><br><span>fontcolor</span></a>
-			<a href="#" class="bgcolor-btn"><img src="icons/bgcolor.png" height="30" width="30"><br><span>bg-color</span></a>
- 			<a href="#" class="comment-btn"><img src="icons/comment.png" height="30" width="30"><br><span>comment</span></a>
+			<a href="#" class="sibling-btn"><img src="icons/sibling4.png" height="30" width="30"><!--<br><span>sibling</span>--></a>
+			<a href="#" class="child-btn"><img src="icons/child4.png" height="30" width="30"><!--<br><span>child</span>--></a>
+			<a href="#" class="shape-btn"><img src="icons/theme4.png" height="30" width="30"><!--<br><span>theme</span>--></a>
+			<a href="#" class="fontcolor-btn"><img src="icons/fontcolor4.png" height="30" width="30"><!--<br><span>fontcolor</span>--></a>
+			<a href="#" class="bgcolor-btn"><img src="icons/bgcolor4.png" height="30" width="30"><!--<br><span>bg-color</span>--></a>
+ 			<a href="#" class="comment-btn"><img src="icons/comment4.png" height="30" width="30"><!--<br><span>comment</span>--></a>
 		</div>
 		<div class="fixed-r">
-			<a href="#" class="delete-btn"><img src="icons/delete.png" height="30" width="30"><br><span>delete</span></a>
+			<a href="#" class="delete-btn"><img src="icons/delete4.png" height="30" width="30"><!--<br><span>delete</span>--></a>
 		</div>
 	</div>
 	<div class="clear"></div>
-	<div class="selectionBar">
+	<div id="selectionBar" class="selectionBar">
 		<div id="color" class="show">
-			<a href="#"><img src="color/red.png" width="30%"></a>
-			<a href="#"><img src="color/yellow.png" width="30%"></a>
-			<a href="#"><img src="color/green.png" width="30%"></a>
-			<a href="#"><img src="color/lightblue.png" width="30%"></a>
-			<a href="#"><img src="color/skyblue.png" width="30%"></a>
-			<a href="#"><img src="color/gray.png" width="30%"></a>
-			<a href="#"><img src="color/black.png" width="30%"></a>
+			<a href="#"><img src="color/red.png" width="45%"></a>
+			<a href="#"><img src="color/yellow.png" width="45%"></a>
+			<a href="#"><img src="color/green.png" width="45%"></a>
+			<a href="#"><img src="color/lightblue.png" width="45%"></a>
+			<a href="#"><img src="color/skyblue.png" width="45%"></a>
+			<a href="#"><img src="color/gray.png" width="45%"></a>
+			<a href="#"><img src="color/black.png" width="45%"></a>
 		</div>
 		<div id="theme" class="hide">
 			<a href="#">主题一</a>
@@ -42,16 +42,13 @@
 	</div>
 	<script type="text/javascript">
 	window.onload = function(){
-	//调整颜色图片padding，使之垂直居中
-	var colorimg = document.getElementById("color").getElementsByTagName("a");
-	var divHeight = document.getElementById("color").offsetHeight;
-	var height;
-	for(var i = 0; i < colorimg.length; i++){
-		height = colorimg[i].offsetHeight;
-		var padTop1= (divHeight-height)/2;
-		colorimg[i].style.paddingTop = padTop1+"px";
-	}
-    //调整工具栏图片padding，使之居中
+	var bodyWidth = $("#toolBar").width();
+	var bodyHeight = $("body").height();
+	var toolBarHeight = $("#toolBar").height();
+	var selectionBarHeight = $(".selectionBar").height();
+	$("#canvas").width(bodyWidth-10);
+	$("#canvas").height(bodyHeight-toolBarHeight-selectionBarHeight-10);
+    //调整工具栏图片margin，使之垂直居中
 	var toolBar_tag_a = document.getElementById("toolBar").getElementsByTagName("a");
 	var toolBar_img = document.getElementById("toolBar").getElementsByTagName("img");
 	var aHeight;
@@ -60,9 +57,19 @@
 	for(var j = 0; j < toolBar_tag_a.length; j++){
 		aHeight = toolBar_tag_a[j].offsetHeight;
         imgHeight = toolBar_img[j].offsetHeight;
-        padTop2 = (aHeight-imgHeight)*0.45;
-        toolBar_img[j].style.paddingTop = padTop2+"PX";
-        console.log(padTop2);
+        padTop2 = (aHeight-imgHeight)*0.4;
+        toolBar_img[j].style.marginTop = padTop2+"px";
+    }
+    //调整颜色图片margin，使之垂直居中
+    var colorBar_tag_a = document.getElementById("color").getElementsByTagName("a");
+    var colorBar_img = document.getElementById("color").getElementsByTagName("img");
+    var colorBar_tag_a_height;
+    var colorBar_img_height;
+    for(var i=0;i<colorBar_tag_a.length;i++){
+    colorBar_tag_a_height = colorBar_tag_a[i].offsetHeight;
+    colorBar_img_height = colorBar_img[i].offsetHeight;
+    var margintop = (colorBar_tag_a_height - colorBar_img_height)*0.4;
+    colorBar_img[i].style.marginTop = margintop+"px";
     }
 }
 	</script>
