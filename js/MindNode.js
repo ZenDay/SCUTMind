@@ -11,7 +11,7 @@ function MindNode(type,pNode,position,theme){
     this.text = "";
     this.textColor = "#ffffff";
 }
-s
+
 MindNode.prototype = {
     constructor : MindNode,
     /*
