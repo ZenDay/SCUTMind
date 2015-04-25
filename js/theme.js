@@ -20,6 +20,7 @@ var theme_default = {
 
 	//size
 	element_width : 60,
+    element_height : 25,
 	father_child_margin : 30,
 	brother_margin : 20,
 

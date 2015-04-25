@@ -16,10 +16,14 @@ SCUTMind.themes = {
     default : "default"
 //add theme in this object.
 };
-SCUTMind.pattern = {
-    default : "default"
+SCUTMind.patterns = {
+    default : "toRightMind",
+    tree : "treeMind",
+    organize : "organizeMind"
 //add pattern in this object.
 };
+SCUTMind.theme = SCUTMind.themes.default;
+SCUTMind.pattern = SCUTMind.patterns.default;
 
 
 /*
@@ -125,4 +129,57 @@ SCUTMind.draw = function (cxt,node) {};
  @param text {string} the text of the node.
  @return nodeScope {array}
  */
-SCUTMind.initNodeScope = function (type,theme,position,text) {};
+SCUTMind.initNodeScope = function (type,theme,position,text) {
+    var nodeScope = [];
+    var node_width = theme.element_width;
+    var node_height;
+    if(text.length <= 5){
+        node_height = theme.element_height;
+    }
+    else if(text.length <= 10){
+        node_height = theme.element_height + 20;
+    }
+    else if(text.length <= 15){
+        node_height = theme.element_height + 25;
+    }
+
+    nodeScope[0] = position[0] - node_width/2;
+    nodeScope[1] = position[1] - node_height/2;
+    nodeScope[2] = position[0] + node_width/2;
+    nodeScope[3] = position[1] + node_height/2;
+
+    return nodeScope;
+};
+
+/*
+ @method initNodeArea
+ @param pattern {string} the pattern of the SCUTMind.
+ @param changNode {MindNode} the node you want to change.
+ @return nodeArea {array}
+*/
+SCUTMind.initNodeArea = function (pattern,changeNode){
+    var nodeArea = [];
+    if(pattern == SCUTMind.patterns.default) {
+        if (changeNode.children.length != 0) {
+            nodeArea[0] = changeNode.scope[0];
+            nodeArea[1] = changeNode.children[0].scope[1];
+            nodeArea[2] = changeNode.children[changeNode.children.length - 1].scope[2];
+            nodeArea[3] = changeNode.children[changeNode.children.length - 1].scope[3];
+        }
+        else{
+            nodeArea = changeNode.scope;
+        }
+    }
+    else if(pattern == SCUTMind.patterns.tree || pattern == SCUTMind.patterns.organize){
+        if (changeNode.children.length != 0) {
+            nodeArea[0] = changeNode.children[0].scope[0];
+            nodeArea[1] = changeNode.scope[1];
+            nodeArea[2] = changeNode.children[changeNode.children.length - 1].scope[2];
+            nodeArea[3] = changeNode.children[changeNode.children.length - 1].scope[3];
+        }
+        else{
+            nodeArea = changeNode.scope;
+        }
+    }
+    return nodeArea;
+};
