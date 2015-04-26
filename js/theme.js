@@ -1,6 +1,9 @@
-// This file define the theme.
+// This file define the theme for you to select.
 
-// You can change or add theme in this file.
+/*
+@ You can change or add theme in this file.
+@ If you want to use the theme in this file, you should copy it to the variable "SCUTMind.themes" in the file SCUTMindExtension.js.
+*/
 
 /*
 @theme_default also known as theme_gray
@@ -28,8 +31,8 @@ var theme_default = {
 	ch_text_color : "#000",
 
     //grandchild_color 
-    gra_element_color : "#fff"；
-    gra_text_color : "#000";
+    gra_element_color : "#fff",
+    gra_text_color : "#000",
 
     //element_margin
     father_child_margin : 20,
@@ -73,8 +76,8 @@ var theme_yellow = {
 	ch_text_color : "#000",
 
     //grandchild_color 
-    gra_element_color : "#fff"；
-    gra_text_color : "#000";
+    gra_element_color : "#fff",
+    gra_text_color : "#000",
 
 	//element_margin
     father_child_margin : 20,
@@ -118,8 +121,8 @@ var theme_green = {
 	ch_text_color : "#000",
 
     //grandchild_color 
-    gra_element_color : "#fff"；
-    gra_text_color : "#000";
+    gra_element_color : "#fff",
+    gra_text_color : "#000",
 
 	//element_margin
     father_child_margin : 20,
@@ -163,8 +166,8 @@ var theme_blue = {
 	ch_text_color : "#000",
 
     //grandchild_color 
-    gra_element_color : "#fff"；
-    gra_text_color : "#000";
+    gra_element_color : "#fff",
+    gra_text_color : "#000",
 
 	//element_margin
     father_child_margin : 20,
@@ -208,8 +211,8 @@ var theme_pink = {
 	ch_text_color : "#000",
 
     //grandchild_color 
-    gra_element_color : "#fff"；
-    gra_text_color : "#000";
+    gra_element_color : "#fff",
+    gra_text_color : "#000",
 
 	//element_margin
     father_child_margin : 20,
@@ -253,8 +256,8 @@ var theme_purple = {
 	ch_text_color : "#000",
 
     //grandchild_color 
-    gra_element_color : "#fff"；
-    gra_text_color : "#000";
+    gra_element_color : "#fff",
+    gra_text_color : "#000",
 
 	//element_margin
     father_child_margin : 20,
@@ -298,8 +301,8 @@ var theme_classic = {
 
 
     //grandchild_color 
-    gra_element_color : "#6f916f"；
-    gra_text_color : "#000";
+    gra_element_color : "#6f916f",
+    gra_text_color : "#000",
 
 	//element_margin
     father_child_margin : 20,
@@ -342,8 +345,8 @@ var theme_tiny = {
 	ch_text_color : "#e75d66",
 
     //grandchild_color 
-    gra_element_color : "#344370"；
-    gra_text_color : "#000";
+    gra_element_color : "#344370",
+    gra_text_color : "#000",
 
 	//element_margin
     father_child_margin : 14,
@@ -358,7 +361,7 @@ var theme_tiny = {
 	ch_element_height : 22,
 
 	//grandchild
-	common_border ："hidden";
+	common_border : "hidden",
     
 	//else
 	background_img : "none"
@@ -389,8 +392,8 @@ var theme_circle = {
 	ch_text_color : "#000",
 
     //grandchild_color 
-    gra_element_color : "#4cdbf4"；
-    gra_text_color : "#000";
+    gra_element_color : "#4cdbf4",
+    gra_text_color : "#000",
 
 	//element_margin
     father_child_margin : 20,
@@ -432,8 +435,8 @@ var theme_soft = {
 	ch_text_color : "#99ca6a",
 
     //grandchild_color 
-    gra_element_color : "#8e8e8e"；
-    gra_text_color : "#000";
+    gra_element_color : "#8e8e8e",
+    gra_text_color : "#000",
 
 	//element_margin
     father_child_margin : 20,
@@ -449,5 +452,5 @@ var theme_soft = {
 
 	//else
 	background_img : "none"
-}
+};
 

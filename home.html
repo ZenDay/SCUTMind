@@ -42,36 +42,36 @@
 	</div>
 	<script type="text/javascript">
 	window.onload = function(){
-	var bodyWidth = $("#toolBar").width();
-	var bodyHeight = $("body").height();
-	var toolBarHeight = $("#toolBar").height();
-	var selectionBarHeight = $(".selectionBar").height();
-	$("#canvas").width(bodyWidth-10);
-	$("#canvas").height(bodyHeight-toolBarHeight-selectionBarHeight-10);
-    //调整工具栏图片margin，使之垂直居中
-	var toolBar_tag_a = document.getElementById("toolBar").getElementsByTagName("a");
-	var toolBar_img = document.getElementById("toolBar").getElementsByTagName("img");
-	var aHeight;
-	var imgHeight;
-	var padTop2;
-	for(var j = 0; j < toolBar_tag_a.length; j++){
-		aHeight = toolBar_tag_a[j].offsetHeight;
-        imgHeight = toolBar_img[j].offsetHeight;
-        padTop2 = (aHeight-imgHeight)*0.4;
-        toolBar_img[j].style.marginTop = padTop2+"px";
+        var bodyWidth = $("#toolBar").width();
+        var bodyHeight = $("body").height();
+        var toolBarHeight = $("#toolBar").height();
+        var selectionBarHeight = $(".selectionBar").height();
+        $("#canvas").width(bodyWidth-10);
+        $("#canvas").height(bodyHeight-toolBarHeight-selectionBarHeight-10);
+        //调整工具栏图片margin，使之垂直居中
+        var toolBar_tag_a = document.getElementById("toolBar").getElementsByTagName("a");
+        var toolBar_img = document.getElementById("toolBar").getElementsByTagName("img");
+        var aHeight;
+        var imgHeight;
+        var padTop2;
+        for(var j = 0; j<toolBar_tag_a.length; j++){
+            aHeight = toolBar_tag_a[j].offsetHeight;
+            imgHeight = toolBar_img[j].offsetHeight;
+            padTop2 = (aHeight - imgHeight)*0.4;
+            toolBar_img[j].style.marginTop = padTop2+"px";
+        }
+        //调整颜色图片margin，使之垂直居中
+        var colorBar_tag_a = document.getElementById("color").getElementsByTagName("a");
+        var colorBar_img = document.getElementById("color").getElementsByTagName("img");
+        var colorBar_tag_a_height;
+        var colorBar_img_height;
+        for(var i=0; i<colorBar_tag_a.length; i++){
+            colorBar_tag_a_height = colorBar_tag_a[i].offsetHeight;
+            colorBar_img_height = colorBar_img[i].offsetHeight;
+            var margin_top = (colorBar_tag_a_height - colorBar_img_height)*0.4;
+            colorBar_img[i].style.marginTop = margin_top+"px";
+        }
     }
-    //调整颜色图片margin，使之垂直居中
-    var colorBar_tag_a = document.getElementById("color").getElementsByTagName("a");
-    var colorBar_img = document.getElementById("color").getElementsByTagName("img");
-    var colorBar_tag_a_height;
-    var colorBar_img_height;
-    for(var i=0;i<colorBar_tag_a.length;i++){
-    colorBar_tag_a_height = colorBar_tag_a[i].offsetHeight;
-    colorBar_img_height = colorBar_img[i].offsetHeight;
-    var margintop = (colorBar_tag_a_height - colorBar_img_height)*0.4;
-    colorBar_img[i].style.marginTop = margintop+"px";
-    }
-}
 	</script>
 </body>
 </html>

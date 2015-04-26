@@ -13,7 +13,169 @@ SCUTMind.rootNode = null;
 SCUTMind.currNode = null;
 SCUTMind.currPattern = null;
 SCUTMind.themes = {
-    default : "default"
+    default : {
+        //shape
+        ancestor_shape : "capsule",
+        child_shape : "rounded_rectangle",
+        line_shape : "straight",
+
+        //decoration
+        background_color : "#fff",
+        line_color : "#8e8e8e",
+        focus_border_color : "#000000",
+        common_border_color : "#ccc",
+        focus_border_width : 2,
+        common_border_width : 1,
+
+        //ancestor_color
+        anc_element_color : "#ccc",
+        anc_text_color : "#fff",
+
+        //child_color
+        ch_element_color : "#E0DFE0",
+        ch_text_color : "#000",
+
+        //grandchild_color 
+        gra_element_color : "#fff",
+        gra_text_color : "#000",
+
+        //element_margin
+        father_child_margin : 20,
+        brother_margin : 15,
+
+        //ancestor_size
+        anc_element_width : 80,
+        anc_element_height : 35,
+
+        //child_size
+        ch_element_width : 60,
+        ch_element_height : 27,
+
+        //else
+        background_img : "none"
+    },
+    theme_yellow : {
+        //shape
+        ancestor_shape : "capsule",
+        child_shape : "rounded_rectangle",
+        line_shape : "straight",
+
+        //decoration
+        background_color : "#fff",
+        line_color : "#8e8e8e",
+        focus_border_color : "#C38707",
+        common_border_color : "#fac75b",
+        focus_border_width : 2,
+        common_border_width : 1,
+
+        //ancestor_color
+        anc_element_color : "#fac75b",
+        anc_text_color : "fff",
+
+        //child_color
+        ch_element_color : "#FEE4C2",
+        ch_text_color : "#000",
+
+        //grandchild_color 
+        gra_element_color : "#fff",
+        gra_text_color : "#000",
+
+        //element_margin
+        father_child_margin : 20,
+        brother_margin : 15,
+
+        //ancestor_size
+        anc_element_width : 80,
+        anc_element_height : 35,
+
+        //child_size
+        ch_element_width : 60,
+        ch_element_height : 27,
+
+        //else
+        background_img : "none"
+    },
+    theme_green : {
+        //shape
+        ancestor_shape : "capsule",
+        child_shape : "rounded_rectangle",
+        line_shape : "straight",
+
+        //decoration
+        background_color : "#fff",
+        line_color : "#8e8e8e",
+        focus_border_color : "#09816A",
+        common_border_color : "#00c5ad",
+        focus_border_width : 2,
+        common_border_width : 1,
+
+        //ancestor_color
+        anc_element_color : "#00c5ad",
+        anc_text_color : "fff",
+
+        //child_color
+        ch_element_color : "#A6FBD8",
+        ch_text_color : "#000",
+
+        //grandchild_color
+        gra_element_color : "#fff",
+        gra_text_color : "#000",
+
+        //element_margin
+        father_child_margin : 20,
+        brother_margin : 15,
+
+        //ancestor_size
+        anc_element_width : 80,
+        anc_element_height : 35,
+
+        //child_size
+        ch_element_width : 60,
+        ch_element_height : 27,
+
+        //else
+        background_img : "none"
+    },
+    theme_circle : {
+        //shape
+        ancestor_shape : "circle",
+        child_shape : "capsule",
+        line_shape : "straight",
+
+        //decoration
+        background_color : "#4CDBF4",
+        line_color : "#667b99",
+        focus_border : "none",
+        common_border : "none",
+        focus_element_color : "#5B1156",
+
+        //ancestor_color
+        anc_element_color : "#e8e88e",
+        anc_text_color : "#D4C070",
+
+        //child_color
+        ch_element_color : "#88F6AE",
+        ch_text_color : "#000",
+
+        //grandchild_color
+        gra_element_color : "#4cdbf4",
+        gra_text_color : "#000",
+
+        //element_margin
+        father_child_margin : 20,
+        brother_margin : 15,
+
+        //ancestor_size
+        anc_element_width : 80,
+        anc_element_height : 35,
+
+        //child_size
+        ch_element_width : 60,
+        ch_element_height : 27,
+
+        //else
+        background_img : "none"
+    }
 //add theme in this object.
 };
 SCUTMind.patterns = {
