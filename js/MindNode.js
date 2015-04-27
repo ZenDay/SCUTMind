@@ -10,7 +10,6 @@ function MindNode(type,pNode,position,theme){
     this.scope = SCUTMind.initNodeScope(theme,position,"");
     this.area = SCUTMind.initNodeArea(SCUTMind.pattern, this);
     this.text = "";
-    this.textColor = "#ffffff";
 }
 
 MindNode.prototype = {

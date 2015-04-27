@@ -12,6 +12,7 @@ SCUTMind.currCanvasScope = [];
 SCUTMind.rootNode = null;
 SCUTMind.currNode = null;
 SCUTMind.currPattern = null;
+SCUTMind.currTheme = null;
 SCUTMind.themes = {
     default : {
         //shape
@@ -184,8 +185,7 @@ SCUTMind.patterns = {
     organize : "organizeMind"
 //add pattern in this object.
 };
-SCUTMind.theme = SCUTMind.themes.default;
-SCUTMind.pattern = SCUTMind.patterns.default;
+
 
 
 /*
@@ -201,6 +201,7 @@ SCUTMind.init = function (cxt,theme,pattern,bgWidth,bgHeight,canvasW,canvasH) {
     this.backgroundCenter = [bgWidth/2,bgHeight/2];
     this.currCanvasScope = [(bgWidth - canvasW)/2,(bgHeight - canvasH)/2,(bgWidth + canvasW)/2,(bgHeight + canvasH)/2];
     this.currPattern = pattern;
+    this.currTheme = theme;
     if (SCUTMind.rootNode) {
         this.rootNode = new MindNode("main",null,this.backgroundCenter,theme);
     }
@@ -216,7 +217,7 @@ SCUTMind.init = function (cxt,theme,pattern,bgWidth,bgHeight,canvasW,canvasH) {
  */
 SCUTMind.draws = function (cxt,node) {
     this.draw(cxt,node);
-    for (var i = 0; i < node.children.length; i++) {
+    for (var i = 0; i<node.children.length; i++) {
         this.draws(cxt, node.children[i]);
     }
     return this;
@@ -276,6 +277,62 @@ SCUTMind.changeTheme = function (theme,node) {
 
 //this is some function about front end achievement
 /*
+ @method movingRegion
+ @param node {MindNode} the node you need to moving in method computePosition.
+ @nothing to return.
+*/
+SCUTMind.movingRegion = function(node){
+    node.position[1] -= (node.area[1]/2 + SCUTMind.currTheme.brother_margin/2);
+    for(var i=0; i<node.children.length; i++){
+        SCUTMind.movingRegion(node.children[i]);
+    }
+}
+
+/*
+ @method computePosition.
+ @param node {MindNode} the currNode.
+ @nothing to return.
+*/
+SCUTMind.computePosition = function(node){
+    if(SCUTMind.currPattern == SCUTMind.patterns.default){
+        for(var i=0; i<node.children.length; i++){
+            node.children[i].position[0] = node.scope[2] + SCUTMind.currTheme.father_child_margin + SCUTMind.currTheme.ch_element_width/2;
+        }
+        for(var i=1; i<node.children.length; i++){
+            for(var j=0; j<i; j++){
+                SCUTMind.movingRegion(node.children[j]);
+            }
+            node.children[i].position[1] = node.children[i-1].position[1] + node.children[i-1].area[1]/2 + SCUTMind.currTheme.brother_margin/2 + (node.children[i].area[1])/2;
+            node.area[1] += (SCUTMind.currTheme.brother_margin);
+        }
+    }
+};
+
+/*
+ @method updatePosition.
+ @param node {MindNode} the node you which you want to operate.
+ @nothing to return.
+*/
+SCUTMind.updatePosition = function(node){
+    if(node.type == "main") {
+        node.position = SCUTMind.backgroundCenter;
+    }
+    if(node.children.length != 0){
+        node.area[0] += (SCUTMind.currTheme.father_child_margin + SCUTMind.currTheme.ch_element_width);
+        node.children[0].position[1] = node.position[1];
+    }
+    for(var i=0; i<node.children.length; i++) {
+        node.children[i].position[0] = node.scope[2] + SCUTMind.currTheme.father_child_margin + SCUTMind.currTheme.ch_element_width/2;
+        if (node.children[i].children.length != 0) {
+            SCUTMind.updatePosition(node.children[i]);
+        }
+        else {
+            SCUTMind.computePosition(node);
+        }
+    }
+};
+
+/*
  @method draw
  @param cxt {Object} the context of web page's canvas.
  @param node {MindNode} the node which you want to draws.
@@ -315,33 +372,13 @@ SCUTMind.initNodeScope = function (type,theme,position,text) {
 
 /*
  @method initNodeArea
- @param pattern {string} the pattern of the SCUTMind.
- @param changNode {MindNode} the node you want to change.
- @return nodeArea {array}
+ @param node {MindNode} the node you want to change.
+ @nothing to return.
 */
-SCUTMind.initNodeArea = function (pattern,changeNode){
-    var nodeArea = [];
-    if(pattern == SCUTMind.patterns.default) {
-        if (changeNode.children.length != 0) {
-            nodeArea[0] = changeNode.scope[0];
-            nodeArea[1] = changeNode.children[0].scope[1];
-            nodeArea[2] = changeNode.children[changeNode.children.length - 1].scope[2];
-            nodeArea[3] = changeNode.children[changeNode.children.length - 1].scope[3];
-        }
-        else{
-            nodeArea = changeNode.scope;
-        }
+SCUTMind.initNodeArea = function (node){
+    node.area[0] = node.scope[2] - node.scope[0];
+    node.area[1] = node.scope[3] - node.scope[1];
+    for(var i=0; i<node.children.length; i++){
+        SCUTMind.initNodeArea(node.children[i]);
     }
-    else if(pattern == SCUTMind.patterns.tree || pattern == SCUTMind.patterns.organize){
-        if (changeNode.children.length != 0) {
-            nodeArea[0] = changeNode.children[0].scope[0];
-            nodeArea[1] = changeNode.scope[1];
-            nodeArea[2] = changeNode.children[changeNode.children.length - 1].scope[2];
-            nodeArea[3] = changeNode.children[changeNode.children.length - 1].scope[3];
-        }
-        else{
-            nodeArea = changeNode.scope;
-        }
-    }
-    return nodeArea;
 };
