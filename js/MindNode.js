@@ -21,7 +21,7 @@ MindNode.prototype = {
      */
     addChild : function (node) {
         this.children.push(node);
-        this.area = SCUTMind.initNodeArea(SCUTMind.pattern, this);
+        this.area = SCUTMind.initNodeArea(this);
         return this;
     },
     /*

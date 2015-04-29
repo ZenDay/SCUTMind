@@ -288,46 +288,30 @@ SCUTMind.movingRegion = function(node){
     }
 }
 
-/*
- @method computePosition.
- @param node {MindNode} the currNode.
- @nothing to return.
-*/
-SCUTMind.computePosition = function(node){
-    if(SCUTMind.currPattern == SCUTMind.patterns.default){
-        for(var i=0; i<node.children.length; i++){
-            node.children[i].position[0] = node.scope[2] + SCUTMind.currTheme.father_child_margin + SCUTMind.currTheme.ch_element_width/2;
-        }
-        for(var i=1; i<node.children.length; i++){
-            for(var j=0; j<i; j++){
-                SCUTMind.movingRegion(node.children[j]);
-            }
-            node.children[i].position[1] = node.children[i-1].position[1] + node.children[i-1].area[1]/2 + SCUTMind.currTheme.brother_margin/2 + (node.children[i].area[1])/2;
-            node.area[1] += (SCUTMind.currTheme.brother_margin);
-        }
-    }
-};
 
 /*
  @method updatePosition.
  @param node {MindNode} the node you which you want to operate.
+ @param x_or_y {int} the top or left of the node's area you want to operate.
  @nothing to return.
 */
-SCUTMind.updatePosition = function(node){
-    if(node.type == "main") {
-        node.position = SCUTMind.backgroundCenter;
-    }
-    if(node.children.length != 0){
-        node.area[0] += (SCUTMind.currTheme.father_child_margin + SCUTMind.currTheme.ch_element_width);
-        node.children[0].position[1] = node.position[1];
-    }
-    for(var i=0; i<node.children.length; i++) {
-        node.children[i].position[0] = node.scope[2] + SCUTMind.currTheme.father_child_margin + SCUTMind.currTheme.ch_element_width/2;
-        if (node.children[i].children.length != 0) {
-            SCUTMind.updatePosition(node.children[i]);
+SCUTMind.updatePosition = function(node, x_or_y){
+    var margin = 0;
+    if (SCUTMind.currPattern == SCUTMind.patterns.default) {
+        if(node.type !="main") {
+            node.position[1] = x_or_y + node.area[1] / 2;
         }
-        else {
-            SCUTMind.computePosition(node);
+        for (var i = 0; i < node.children.length; i++) {
+            this.updatePosition(node.children[i], x_or_y + margin);
+            margin += SCUTMind.currTheme.brother_margin + node.children[i].area[1];
+        }
+    }
+    else{
+        if(node.type !="main")
+            node.position[0] = x_or_y + node.area[0]/2;
+        for (var i = 0; i < node.children.length; i++) {
+            this.updatePosition(node.children[i], x_or_y + margin);
+            margin += SCUTMind.currTheme.brother_margin + node.children[i].area[0];
         }
     }
 };
@@ -350,18 +334,8 @@ SCUTMind.draw = function (cxt,node) {};
  */
 SCUTMind.initNodeScope = function (type,theme,position,text) {
     var nodeScope = [];
-    var node_width = theme.element_width;
-    var node_height;
-    if(text.length <= 5){
-        node_height = theme.element_height;
-    }
-    else if(text.length <= 10){
-        node_height = theme.element_height + 20;
-    }
-    else if(text.length <= 15){
-        node_height = theme.element_height + 25;
-    }
-
+    var node_width = SCUTMind.currTheme.ch_element_width;
+    var node_height = SCUTMind.currTheme.ch_element_height;
     nodeScope[0] = position[0] - node_width/2;
     nodeScope[1] = position[1] - node_height/2;
     nodeScope[2] = position[0] + node_width/2;
@@ -372,13 +346,44 @@ SCUTMind.initNodeScope = function (type,theme,position,text) {
 
 /*
  @method initNodeArea
- @param node {MindNode} the node you want to change.
+ @param node {MindNode} the node you want to init its area.
  @nothing to return.
 */
 SCUTMind.initNodeArea = function (node){
-    node.area[0] = node.scope[2] - node.scope[0];
-    node.area[1] = node.scope[3] - node.scope[1];
-    for(var i=0; i<node.children.length; i++){
-        SCUTMind.initNodeArea(node.children[i]);
+    var currFirstNode = node;
+    var currLastNode = node;
+    while (currFirstNode.children.length != 0) {
+        currFirstNode = currFirstNode.children[0];
     }
+    while (currLastNode.children.length != 0) {
+        currLastNode = currLastNode.children[currLastNode.children.length - 1];
+    }
+    if(SCUTMind.currPattern == SCUTMind.patterns.default){
+        var mostRight_node = currFirstNode;
+        if(currFirstNode.position[0] < currLastNode.position[0])
+            mostRight_node = currLastNode;
+        node.area[0] = mostRight_node.position[0] - node.position[0] + SCUTMind.currTheme.ch_element_width;
+        node.area[1] = currLastNode.position[1] + (currLastNode.scope[3]-currLastNode.scope[1])/2 - currFirstNode.position[1] + (currFirstNode.scope[3]-currFirstNode.scope[1])/2;
+    }
+    else if(SCUTMind.currPattern == SCUTMind.patterns.tree || SCUTMind.currPattern == SCUTMind.patterns.organize){
+        var mostBottom_node = currFirstNode;
+        if(currFirstNode.position[1] < currLastNode.position[1])
+            mostBottom_node = currLastNode;
+        node.area[0] = currLastNode.position[0] - currLastNode.position[0] + SCUTMind.currTheme.ch_element_width;
+        node.area[1] = mostBottom_node.position[1] + (mostBottom_node.scope[3]-mostBottom_node.scope[1])/2 - node.position[1] + (node.scope[3]-node.scope[1])/2;
+    }
+    this.initNodeArea(SCUTMind.rootNode);
 };
+
+
+/*
+ @method updateArea
+ @param node {MindNode} this node and its ancestors' areas will be init.
+ @nothing to return.
+*/
+SCUTMind.updateArea = function(node){
+    this.initNodeArea(node);
+    if(node.parent != null){
+        this.updateArea(node.parent);
+    }
+}
