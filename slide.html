@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8"/>
+    <link rel="stylesheet" type="text/css" href="css/slide.css"/>
+    <title>CSS3点击显示</title>
+  </head>
+  <body>
+    <script type="text/javascript" src="js/slide.js"></script>
+    <input type='checkbox' id='sideToggle'>
+    <aside>
+      <h2>Menu</h2>
+      <div id="patterns">
+        <div>
+          <img class="radial" src="pattern/radial.png" alt="radial">
+        </div>
+        <div>
+          <img class="tree" src="pattern/tree.png" alt="tree">
+        </div>
+        <div>
+          <img class="organization" src="pattern/organization.png" alt="organization">
+        </div>
+         <div>
+          <img class="save" src="pattern/save.png" alt="save">
+        </div>
+      </div>
+    </aside>
+    <div id='wrap'> 
+      <label id='sideMenuControl' for='sideToggle'>=</label>
+      <p>侧边框</p>
+    </div>
+    <div id="element">
+      <input type="button" onclick="showDlg();" value="element"/>
+      <a href="javascript:;" onClick=showDlg()>element</a>
+      <div id="divBox" class="hideDlg" style="" >
+            <table width="100%" style="height:100%; width: 100%;" id="table1">
+                    <tr>
+                        <td style="height: 20px; text-align: center;" colspan="3">请输入元素内容</td>
+                    </tr>
+                    <tr>
+                        <td>内容&nbsp;</td>
+                        <td>
+                            <input name="TextBox1" type="text" id="TextBox1" />
+                        </td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td>
+                            <input type="button" name="Button1" value="Login" id="Button1" size="10" onclick="alert(TextBox1.value)"/>&nbsp;&nbsp;
+                            <input type="button" name="Button2" value="Cancel" id="Button2" size="10" onclick="cancel();" />
+                            </td>
+                        <td>&nbsp;</td>
+                    </tr>
+            </table>
+      </div>
+    </div>
+  </body>
+</html>
