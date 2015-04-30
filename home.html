@@ -4,10 +4,14 @@
 	<meta charset="UTF-8">
 	<link rel="stylesheet" type="text/css" href="css/main.css">
 	<script type="text/javascript" src="jquery/jquery-1.11.2.min.js"></script>
-	<title>SCUTmind</title>
+    <script type="text/javascript" src="js/MindNode.js"></script>
+    <script type="text/javascript" src="js/SCUTMindExtension.js"></script>
+    <script type="text/javascript" src="js/main.js"></script>
+	<title>SCUTMind</title>
 </head>
 <body>
-	<canvas id="canvas">您的浏览器不支持canvas，请更换浏览器后尝试</canvas><div id="toolBar" class="toolBar">
+	<canvas id="canvas" width="500" height="800">您的浏览器不支持canvas，请更换浏览器后尝试</canvas>
+	<div id="toolBar" class="toolBar">
 		<div class="fixed-l">
 			<a href="#" class="sideBar-btn"><img src="icons/menu4.png" height="30" width="30"></a>
 		</div>
@@ -54,7 +58,7 @@
         var aHeight;
         var imgHeight;
         var padTop2;
-        for(var j = 0; j<toolBar_tag_a.length; j++){
+        for(var j=0; j<toolBar_tag_a.length; j++){
             aHeight = toolBar_tag_a[j].offsetHeight;
             imgHeight = toolBar_img[j].offsetHeight;
             padTop2 = (aHeight - imgHeight)*0.4;

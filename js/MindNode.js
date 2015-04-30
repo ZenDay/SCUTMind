@@ -1,14 +1,13 @@
 //This file defines some constructor of some object type
 
 //A constructor of MindNode type
-function MindNode(type,pNode,position,theme){
+function MindNode(type,pNode,position){
     this.type = type;
     this.parent = pNode;
     this.children = [];
     this.position = position;
-    this.theme = SCUTMind.theme;
-    this.scope = SCUTMind.initNodeScope(theme,position,"");
-    this.area = SCUTMind.initNodeArea(SCUTMind.pattern, this);
+    this.scope = SCUTMind.initNodeScope(type,position,"");
+    this.area = SCUTMind.initNewNodeArea(this);
     this.text = "";
 }
 
@@ -21,7 +20,7 @@ MindNode.prototype = {
      */
     addChild : function (node) {
         this.children.push(node);
-        this.area = SCUTMind.initNodeArea(this);
+        SCUTMind.updateArea(node);
         return this;
     },
     /*
@@ -31,7 +30,7 @@ MindNode.prototype = {
      */
     deleteChild : function (node) {
         this.children.splice(this.children.indexOf(node),1);
-        this.area = SCUTMind.initNodeArea(SCUTMind.pattern, this);
+        this.area = SCUTMind.updateArea(node);
         return this;
     },
     /*
@@ -44,21 +43,8 @@ MindNode.prototype = {
             this.text = text;
         else
             alert("The input text is too long!");
-        this.scope = SCUTMind.initNodeScope(this.type,this.theme,this.position,text);
-        this.area = SCUTMind.initNodeArea(SCUTMind.pattern, this);
-        this.parent.area = SCUTMind.initNodeArea(SCUTMind.pattern, this.parent);
-        return this;
-    },
-    /*
-     @method changeText
-     @param text {string} text you want to change.
-     @return this {MindNode}
-     */
-    changePosition : function (position) {
-        this.position = position;
-        this.scope = SCUTMind.initNodeScope(this.type,this.theme,position,this.text);
-        this.area = SCUTMind.initNodeArea(SCUTMind.pattern, this);
-        this.parent.area = SCUTMind.initNodeArea(SCUTMind.pattern, this.parent);
+        this.scope = SCUTMind.initNodeScope(this.type,this.position,text);
+        SCUTMind.updateArea(this);
         return this;
     },
     /*

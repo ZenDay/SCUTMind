@@ -10,8 +10,8 @@
 */
 var theme_default = {
 	//shape
-	ancestor_shape : "capsule",
-	child_shape : "rounded_rectangle",
+	ancestor_shape : "rectangle",
+	child_shape : "rectangle",
 	line_shape : "straight",
 
     //decoration
@@ -55,8 +55,8 @@ var theme_default = {
 */
 var theme_yellow = {
 	//shape
-	ancestor_shape : "capsule",
-	child_shape : "rounded_rectangle",
+	ancestor_shape : "rectangle",
+	child_shape : "rectangle",
 	line_shape : "straight",
 
     //decoration
@@ -100,8 +100,8 @@ var theme_yellow = {
 */
 var theme_green = {
 	//shape
-	ancestor_shape : "capsule",
-	child_shape : "rounded_rectangle",
+	ancestor_shape : "rectangle",
+	child_shape : "rectangle",
 	line_shape : "straight",
 
     //decoration
@@ -145,8 +145,8 @@ var theme_green = {
 */
 var theme_blue = {
 	//shape
-	ancestor_shape : "capsule",
-	child_shape : "rounded_rectangle",
+	ancestor_shape : "rectangle",
+	child_shape : "rectangle",
 	line_shape : "straight",
 
     //decoration
@@ -190,8 +190,8 @@ var theme_blue = {
 */
 var theme_pink = {
 	//shape
-	ancestor_shape : "capsule",
-	child_shape : "rounded_rectangle",
+	ancestor_shape : "rectangle",
+	child_shape : "rectangle",
 	line_shape : "straight",
 
     //decoration
@@ -235,8 +235,8 @@ var theme_pink = {
 */
 var theme_purple = {
 	//shape
-	ancestor_shape : "capsule",
-	child_shape : "rounded_rectangle",
+	ancestor_shape : "rectangle",
+	child_shape : "rectangle",
 	line_shape : "straight",
 
     //decoration
@@ -276,12 +276,12 @@ var theme_purple = {
 };
 
 /*
-@theme_classic SCUT mind
+@theme_classic SCUTMind
 */
 var theme_classic = {
 	//shape
-	ancestor_shape : "capsule",
-	child_shape : "rounded_rectangle",
+	ancestor_shape : "rectangle",
+	child_shape : "rectangle",
 	line_shape : "straight",
 
     //decoration
@@ -325,8 +325,8 @@ var theme_classic = {
 */
 var theme_tiny = {
 	//shape
-	ancestor_shape : "rounded_rectangle",
-	child_shape : "capsule",
+	ancestor_shape : "rectangle",
+	child_shape : "rectangle",
 	line_shape : "straight",
 
     //decoration
@@ -373,7 +373,7 @@ var theme_tiny = {
 var theme_circle = {
 	//shape
 	ancestor_shape : "circle",
-	child_shape : "capsule",
+	child_shape : "rectangle",
 	line_shape : "straight",
 
     //decoration
@@ -412,11 +412,11 @@ var theme_circle = {
 };
 
 /*
-@theme_soft with all rounded_rectangle
+@theme_soft with all rectangle
 */
 var theme_soft = {
-	ancestor_shape : "rounded_rectangle",
-	child_shape : "rounded_rectangle",
+	ancestor_shape : "rectangle",
+	child_shape : "rectangle",
 	line_shape : "straight",
 
 	//decoration

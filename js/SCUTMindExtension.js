@@ -1,4 +1,4 @@
-//In this file,you can write the global function or variable.
+//In this file, you can write the global function or variable.
 
 //This is a extension Javascript Object for SCUTMind application.
 var SCUTMind = {};
@@ -16,8 +16,8 @@ SCUTMind.currTheme = null;
 SCUTMind.themes = {
     default : {
         //shape
-        ancestor_shape : "capsule",
-        child_shape : "rounded_rectangle",
+        ancestor_shape : "rectangle",
+        child_shape : "rectangle",
         line_shape : "straight",
 
         //decoration
@@ -36,10 +36,6 @@ SCUTMind.themes = {
         ch_element_color : "#E0DFE0",
         ch_text_color : "#000",
 
-        //grandchild_color 
-        gra_element_color : "#fff",
-        gra_text_color : "#000",
-
         //element_margin
         father_child_margin : 20,
         brother_margin : 15,
@@ -50,15 +46,15 @@ SCUTMind.themes = {
 
         //child_size
         ch_element_width : 60,
-        ch_element_height : 27,
+        ch_element_height : 25,
 
         //else
         background_img : "none"
     },
     theme_yellow : {
         //shape
-        ancestor_shape : "capsule",
-        child_shape : "rounded_rectangle",
+        ancestor_shape : "rectangle",
+        child_shape : "rectangle",
         line_shape : "straight",
 
         //decoration
@@ -77,10 +73,6 @@ SCUTMind.themes = {
         ch_element_color : "#FEE4C2",
         ch_text_color : "#000",
 
-        //grandchild_color 
-        gra_element_color : "#fff",
-        gra_text_color : "#000",
-
         //element_margin
         father_child_margin : 20,
         brother_margin : 15,
@@ -91,15 +83,15 @@ SCUTMind.themes = {
 
         //child_size
         ch_element_width : 60,
-        ch_element_height : 27,
+        ch_element_height : 25,
 
         //else
         background_img : "none"
     },
     theme_green : {
         //shape
-        ancestor_shape : "capsule",
-        child_shape : "rounded_rectangle",
+        ancestor_shape : "rectangle",
+        child_shape : "rectangle",
         line_shape : "straight",
 
         //decoration
@@ -117,10 +109,6 @@ SCUTMind.themes = {
         //child_color
         ch_element_color : "#A6FBD8",
         ch_text_color : "#000",
-
-        //grandchild_color
-        gra_element_color : "#fff",
-        gra_text_color : "#000",
 
         //element_margin
         father_child_margin : 20,
@@ -158,17 +146,13 @@ SCUTMind.themes = {
         ch_element_color : "#88F6AE",
         ch_text_color : "#000",
 
-        //grandchild_color
-        gra_element_color : "#4cdbf4",
-        gra_text_color : "#000",
-
         //element_margin
         father_child_margin : 20,
         brother_margin : 15,
 
         //ancestor_size
         anc_element_width : 80,
-        anc_element_height : 35,
+        anc_element_height : 80,
 
         //child_size
         ch_element_width : 60,
@@ -196,16 +180,15 @@ SCUTMind.patterns = {
  @param canvasW & canvasH {number} the size of web page's canvas.
  @return this {SCUTMind}
  */
-SCUTMind.init = function (cxt,theme,pattern,bgWidth,bgHeight,canvasW,canvasH) {
+SCUTMind.init = function (cxt,bgWidth,bgHeight,canvasW,canvasH) {
     this.backgroundCanvas = [bgWidth,bgHeight];
     this.backgroundCenter = [bgWidth/2,bgHeight/2];
     this.currCanvasScope = [(bgWidth - canvasW)/2,(bgHeight - canvasH)/2,(bgWidth + canvasW)/2,(bgHeight + canvasH)/2];
-    this.currPattern = pattern;
-    this.currTheme = theme;
-    if (SCUTMind.rootNode) {
-        this.rootNode = new MindNode("main",null,this.backgroundCenter,theme);
-    }
-    this.draws(cxt,this.rootNode);
+    this.currPattern = this.patterns.default;
+    this.currTheme = this.themes.default;
+    this.rootNode = new MindNode("main",null,this.backgroundCenter);
+    this.currNode = this.rootNode;
+    this.draws(cxt, this.rootNode);
     return this;
 };
 
@@ -261,45 +244,92 @@ SCUTMind.moveCanvas = function (changeX,changeY) {
 /*
  @method changeTheme
  @param theme {string} the new theme.
- @param node {MindNode} the root node of the tree which you want to change its theme.
- @return this {SCUTMind}
  */
-SCUTMind.changeTheme = function (theme,node) {
-    node.theme = theme;
-    for (var i = 0; i < node.children.length; i++) {
-        this.changeTheme(theme, node.children[i]);
+SCUTMind.changeTheme = function (theme) {
+    this.currTheme = theme;
+    this.updateArea(this.rootNode);
+    if(pattern == this.patterns.default){
+        this.updatePosition(SCUTMind.rootNode, SCUTMind.rootNode.position[1] - SCUTMind.rootNode.area[1]/2);
     }
-    return this;
+    else{
+        SCUTMind.updatePosition(SCUTMind.rootNode, SCUTMind.rootNode.position[0] - SCUTMind.rootNode.area[0]/2);
+    }
+    this.updateScope(this.rootNode);
+    this.draws(cxt, this.rootNode);
 };
 
-
+/*
+ @method changePattern.
+ @param pattern {string} the new pattern.
+ @nothing to return.
+*/
+SCUTMind.changePattern = function(pattern){
+    this.currPattern = pattern;
+    this.updateArea(this.rootNode);
+    if(pattern == this.patterns.default){
+        this.updatePosition(SCUTMind.rootNode, SCUTMind.rootNode.position[1] - SCUTMind.rootNode.area[1]/2);
+    }
+    else{
+        SCUTMind.updatePosition(SCUTMind.rootNode, SCUTMind.rootNode.position[0] - SCUTMind.rootNode.area[0]/2);
+    }
+    this.updateScope(this.rootNode);
+    this.draws(cxt, this.rootNode);
+}
 
 
 //this is some function about front end achievement
 /*
- @method movingRegion
- @param node {MindNode} the node you need to moving in method computePosition.
- @nothing to return.
-*/
-SCUTMind.movingRegion = function(node){
-    node.position[1] -= (node.area[1]/2 + SCUTMind.currTheme.brother_margin/2);
-    for(var i=0; i<node.children.length; i++){
-        SCUTMind.movingRegion(node.children[i]);
+ @method draw
+ @param cxt {Object} the context of web page's canvas.
+ @param node {MindNode} the node which you want to draws.
+ @return this {SCUTMind}
+ */
+SCUTMind.draw = function (cxt,node) {
+    if(node.type == "main"){
+        if(SCUTMind.currTheme != SCUTMind.themes.theme_circle){
+            cxt.beginPath();
+            cxt.fillStyle = SCUTMind.currTheme.anc_element_color;
+            cxt.arc(node.position[0], node.position[1], SCUTMind.currTheme.anc_element_width/2, 0*Math.PI, 2*Math.PI);
+            cxt.fill();
+            cxt.closePath();
+        }
+        else{
+            cxt.beginPath();
+            cxt.rect(node.scope[0], node.scope[1], SCUTMind.currTheme.anc_element_width, node.scope[3]-node.scope[1]);
+            cxt.fill(SCUTMind.currTheme.anc_element_color);
+            cxt.closePath();
+        }
     }
-}
-
+    else{
+        cxt.beginPath();
+        cxt.rect(node.scope[0], node.scope[1], SCUTMind.currTheme.ch_element_width, node.scope[3]-node.scope[1]);
+        cxt.fill(SCUTMind.currTheme.ch_element_color);
+        cxt.closePath();
+        cxt.beginPath();
+        if(SCUTMind.currPattern == SCUTMind.patterns.default) {
+            cxt.moveTo(node.parent.scope[2], node.parent.position[1]);
+            cxt.lineTo(node.socpe[0], node.position[1]);
+        }
+        else{
+            cxt.moveTo(node.parent.position[0], node.parent.scope[3]);
+            cxt.lineTo(node.position[0], node.scope[1]);
+        }
+        cxt.closePath();
+    }
+};
 
 /*
  @method updatePosition.
  @param node {MindNode} the node you which you want to operate.
- @param x_or_y {int} the top or left of the node's area you want to operate.
+ @param x_or_y {int} the top or left of the node's area.
  @nothing to return.
 */
 SCUTMind.updatePosition = function(node, x_or_y){
     var margin = 0;
     if (SCUTMind.currPattern == SCUTMind.patterns.default) {
-        if(node.type !="main") {
-            node.position[1] = x_or_y + node.area[1] / 2;
+        if(node.type != "main") {
+            node.position[0] = node.parent.scope[2] + SCUTMind.currTheme.father_child_margin + SCUTMind.currTheme.ch_element_width/2;
+            node.position[1] = x_or_y + node.area[1]/2;
         }
         for (var i = 0; i < node.children.length; i++) {
             this.updatePosition(node.children[i], x_or_y + margin);
@@ -307,8 +337,10 @@ SCUTMind.updatePosition = function(node, x_or_y){
         }
     }
     else{
-        if(node.type !="main")
+        if(node.type != "main"){
             node.position[0] = x_or_y + node.area[0]/2;
+            node.position[1] = node.parent.scope[3] + SCUTMind.currTheme.father_child_margin + node.scope[3] - node.scope[1];
+        }
         for (var i = 0; i < node.children.length; i++) {
             this.updatePosition(node.children[i], x_or_y + margin);
             margin += SCUTMind.currTheme.brother_margin + node.children[i].area[0];
@@ -316,13 +348,6 @@ SCUTMind.updatePosition = function(node, x_or_y){
     }
 };
 
-/*
- @method draw
- @param cxt {Object} the context of web page's canvas.
- @param node {MindNode} the node which you want to draws.
- @return this {SCUTMind}
- */
-SCUTMind.draw = function (cxt,node) {};
 
 /*
  @method initNodeScope
@@ -332,10 +357,19 @@ SCUTMind.draw = function (cxt,node) {};
  @param text {string} the text of the node.
  @return nodeScope {array}
  */
-SCUTMind.initNodeScope = function (type,theme,position,text) {
+SCUTMind.initNodeScope = function (type,position,text) {
     var nodeScope = [];
-    var node_width = SCUTMind.currTheme.ch_element_width;
-    var node_height = SCUTMind.currTheme.ch_element_height;
+    var node_width;
+    var node_height;
+    if(type == "main"){
+        node_width = SCUTMind.currTheme.anc_element_width;
+        node_height = SCUTMind.currTheme.anc_element_height;
+    }
+    else{
+        node_width = SCUTMind.currTheme.ch_element_width;
+        node_height = SCUTMind.currTheme.ch_element_height;
+    }
+
     nodeScope[0] = position[0] - node_width/2;
     nodeScope[1] = position[1] - node_height/2;
     nodeScope[2] = position[0] + node_width/2;
@@ -343,6 +377,30 @@ SCUTMind.initNodeScope = function (type,theme,position,text) {
 
     return nodeScope;
 };
+
+/*
+ @method updateScope.
+ @param node {MindNode} use rootNode to update all the node's scope.
+ @nothing to return.
+*/
+SCUTMind.updateScope = function(node){
+    this.initNodeScope(node.type, node.position, node.text)
+    for(var i=0; i<node.children.length; i++){
+        this.initNodeScope(node.children[i].type, node.children[i].position, node.children[i].text);
+    }
+}
+
+/*
+ @method initNewNodeArea
+ @param node {MindNode} the new node.
+ @return area {array}.
+ */
+SCUTMind.initNewNodeArea = function(node){
+    var area = [];
+    area[0] = node.scope[2] - node.scope[0];
+    area[1] = node.scope[3] - node.scope[1];
+    return area;
+}
 
 /*
  @method initNodeArea
