@@ -37,7 +37,7 @@ SCUTMind.themes = {
         ch_text_color : "#000",
 
         //element_margin
-        father_child_margin : 20,
+        father_child_margin : 80,
         brother_margin : 15,
 
         //ancestor_size
@@ -285,6 +285,7 @@ SCUTMind.changePattern = function(pattern){
  @return this {SCUTMind}
  */
 SCUTMind.draw = function (cxt,node) {
+    console.log(node.position + " " + node.area);
     if(node.type == "main"){
         if(SCUTMind.currTheme != SCUTMind.themes.theme_circle){
             cxt.beginPath();
@@ -295,26 +296,34 @@ SCUTMind.draw = function (cxt,node) {
         }
         else{
             cxt.beginPath();
+            cxt.fillStyle = SCUTMind.currTheme.anc_element_color;
             cxt.rect(node.scope[0], node.scope[1], SCUTMind.currTheme.anc_element_width, node.scope[3]-node.scope[1]);
-            cxt.fill(SCUTMind.currTheme.anc_element_color);
+            cxt.fill();
             cxt.closePath();
         }
     }
     else{
         cxt.beginPath();
+        cxt.fillStyle = SCUTMind.currTheme.ch_element_color;
         cxt.rect(node.scope[0], node.scope[1], SCUTMind.currTheme.ch_element_width, node.scope[3]-node.scope[1]);
-        cxt.fill(SCUTMind.currTheme.ch_element_color);
+        cxt.fill();
         cxt.closePath();
+        cxt.fillStyle = SCUTMind.currTheme.line_color;
+        cxt.strokeStyle = SCUTMind.currTheme.line_color;
+        cxt.lineWidth = "4";
         cxt.beginPath();
+        
         if(SCUTMind.currPattern == SCUTMind.patterns.default) {
             cxt.moveTo(node.parent.scope[2], node.parent.position[1]);
-            cxt.lineTo(node.socpe[0], node.position[1]);
+            cxt.lineTo(node.scope[0], node.position[1]);
         }
         else{
             cxt.moveTo(node.parent.position[0], node.parent.scope[3]);
             cxt.lineTo(node.position[0], node.scope[1]);
         }
         cxt.closePath();
+        cxt.stroke();
+        cxt.fill();
     }
 };
 
@@ -359,8 +368,8 @@ SCUTMind.updatePosition = function(node, x_or_y){
  */
 SCUTMind.initNodeScope = function (type,position,text) {
     var nodeScope = [];
-    var node_width;
-    var node_height;
+    var node_width = 0;
+    var node_height = 0;
     if(type == "main"){
         node_width = SCUTMind.currTheme.anc_element_width;
         node_height = SCUTMind.currTheme.anc_element_height;
@@ -369,12 +378,10 @@ SCUTMind.initNodeScope = function (type,position,text) {
         node_width = SCUTMind.currTheme.ch_element_width;
         node_height = SCUTMind.currTheme.ch_element_height;
     }
-
     nodeScope[0] = position[0] - node_width/2;
     nodeScope[1] = position[1] - node_height/2;
     nodeScope[2] = position[0] + node_width/2;
     nodeScope[3] = position[1] + node_height/2;
-
     return nodeScope;
 };
 
@@ -384,9 +391,9 @@ SCUTMind.initNodeScope = function (type,position,text) {
  @nothing to return.
 */
 SCUTMind.updateScope = function(node){
-    this.initNodeScope(node.type, node.position, node.text)
+    node.scope = this.initNodeScope(node.type, node.position, node.text)
     for(var i=0; i<node.children.length; i++){
-        this.initNodeScope(node.children[i].type, node.children[i].position, node.children[i].text);
+        this.updateScope(node.children[i]);
     }
 }
 
@@ -430,7 +437,6 @@ SCUTMind.initNodeArea = function (node){
         node.area[0] = currLastNode.position[0] - currLastNode.position[0] + SCUTMind.currTheme.ch_element_width;
         node.area[1] = mostBottom_node.position[1] + (mostBottom_node.scope[3]-mostBottom_node.scope[1])/2 - node.position[1] + (node.scope[3]-node.scope[1])/2;
     }
-    this.initNodeArea(SCUTMind.rootNode);
 };
 
 

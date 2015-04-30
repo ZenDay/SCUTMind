@@ -19,7 +19,13 @@ $(document).ready(function() {
 			SCUTMind.updatePosition(SCUTMind.rootNode, SCUTMind.rootNode.position[1] - SCUTMind.rootNode.area[1]/2);
 		else
 			SCUTMind.updatePosition(SCUTMind.rootNode, SCUTMind.rootNode.position[0] - SCUTMind.rootNode.area[0]/2);
-		SCUTMind.updateScope(SCUMind.rootNode);
+		SCUTMind.updateArea(newNode);
+		if(SCUTMind.currPattern == SCUTMind.patterns.default)
+			SCUTMind.updatePosition(SCUTMind.rootNode, SCUTMind.rootNode.position[1] - SCUTMind.rootNode.area[1]/2);
+		else
+			SCUTMind.updatePosition(SCUTMind.rootNode, SCUTMind.rootNode.position[0] - SCUTMind.rootNode.area[0]/2);
+		SCUTMind.updateScope(SCUTMind.rootNode);
+		cxt.clearRect(0,0,500,800);
 		SCUTMind.draws(cxt, SCUTMind.rootNode);
 		return false;
 	});
