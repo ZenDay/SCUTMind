@@ -23,7 +23,7 @@ SCUTMind.themes = {
         //decoration
         background_color : "#fff",
         line_color : "#8e8e8e",
-        focus_border_color : "#000000",
+        focus_border_color : "rgba(0,0,0,.5)",
         common_border_color : "#ccc",
         focus_border_width : 2,
         common_border_width : 1,
@@ -184,7 +184,7 @@ SCUTMind.init = function (cxt,bgWidth,bgHeight,canvasW,canvasH) {
     this.backgroundCanvas = [bgWidth,bgHeight];
     this.backgroundCenter = [bgWidth/2,bgHeight/2];
     this.currCanvasScope = [(bgWidth - canvasW)/2,(bgHeight - canvasH)/2,(bgWidth + canvasW)/2,(bgHeight + canvasH)/2];
-    this.currPattern = this.patterns.default;
+    this.currPattern = this.patterns.organize;
     this.currTheme = this.themes.default;
     this.rootNode = new MindNode("main",null,this.backgroundCenter);
     this.currNode = this.rootNode;
@@ -285,7 +285,7 @@ SCUTMind.changePattern = function(pattern){
  @return this {SCUTMind}
  */
 SCUTMind.draw = function (cxt,node) {
-    console.log(node.position + " " + node.area);
+    console.log(node.scope + " " + node.area);
     if(node.type == "main"){
         if(SCUTMind.currTheme == SCUTMind.themes.theme_circle){
             cxt.beginPath();
@@ -293,6 +293,13 @@ SCUTMind.draw = function (cxt,node) {
             cxt.arc(node.position[0], node.position[1], SCUTMind.currTheme.anc_element_width/2, 0*Math.PI, 2*Math.PI);
             cxt.fill();
             cxt.closePath();
+            if(SCUTMind.currNode == node){
+                cxt.beginPath();
+                cxt.strokeStyle = SCUTMind.currTheme.focus_border_color;
+                cxt.arc(node.position[0], node.position[1], SCUTMind.currTheme.anc_element_width/2+SCUTMind.currTheme.focus_border_width, 0*Math.PI, 2*Math.PI);
+                cxt.stroke();
+                cxt.closePath();
+            }
         }
         else{
             cxt.beginPath();
@@ -300,7 +307,15 @@ SCUTMind.draw = function (cxt,node) {
             cxt.rect(node.scope[0], node.scope[1], SCUTMind.currTheme.anc_element_width, node.scope[3]-node.scope[1]);
             cxt.fill();
             cxt.closePath();
+            if(SCUTMind.currNode == node){
+                cxt.beginPath();
+                cxt.strokeStyle = SCUTMind.currTheme.focus_border_color;
+                cxt.rect(node.scope[0]-SCUTMind.currTheme.focus_border_width, node.scope[1]-SCUTMind.currTheme.focus_border_width, SCUTMind.currTheme.anc_element_width+SCUTMind.currTheme.focus_border_width*2, node.scope[3]-node.scope[1]+SCUTMind.currTheme.focus_border_width*2);
+                cxt.stroke();
+                cxt.closePath();
+            }
         }
+
     }
     else{
         cxt.beginPath();
@@ -308,11 +323,16 @@ SCUTMind.draw = function (cxt,node) {
         cxt.rect(node.scope[0], node.scope[1], SCUTMind.currTheme.ch_element_width, node.scope[3]-node.scope[1]);
         cxt.fill();
         cxt.closePath();
-        cxt.fillStyle = SCUTMind.currTheme.line_color;
+        if(SCUTMind.currNode == node) {
+            cxt.beginPath();
+            cxt.strokeStyle = SCUTMind.currTheme.focus_border_color;
+            cxt.rect(node.scope[0]-SCUTMind.currTheme.focus_border_width, node.scope[1] - SCUTMind.currTheme.focus_border_width, SCUTMind.currTheme.ch_element_width+SCUTMind.currTheme.focus_border_width*2, node.scope[3]-node.scope[1]+SCUTMind.currTheme.focus_border_width*2);
+            cxt.stroke();
+            cxt.closePath();
+        }
         cxt.strokeStyle = SCUTMind.currTheme.line_color;
         cxt.lineWidth = "4";
         cxt.beginPath();
-        
         if(SCUTMind.currPattern == SCUTMind.patterns.default) {
             cxt.moveTo(node.parent.scope[2], node.parent.position[1]);
             cxt.lineTo(node.scope[0], node.position[1]);
@@ -321,9 +341,8 @@ SCUTMind.draw = function (cxt,node) {
             cxt.moveTo(node.parent.position[0], node.parent.scope[3]);
             cxt.lineTo(node.position[0], node.scope[1]);
         }
-        cxt.closePath();
         cxt.stroke();
-        cxt.fill();
+        cxt.closePath();
     }
 };
 
@@ -418,7 +437,12 @@ SCUTMind.initNodeArea = function (node){
     var area;
 
     if(SCUTMind.currPattern == SCUTMind.patterns.default){
+        try{
         area = node.area[1];
+        }
+        catch (e){
+            console.log(e);
+        };
         if(node.children.length >= 1){
             area = node.children[0].area[1];
         }
@@ -437,28 +461,6 @@ SCUTMind.initNodeArea = function (node){
         }
         node.area[0] = area;
     }
-    //var currFirstNode = node;
-    //var currLastNode = node;
-    //while (currFirstNode.children.length != 0) {
-    //    currFirstNode = currFirstNode.children[0];
-    //}
-    //while (currLastNode.children.length != 0) {
-    //    currLastNode = currLastNode.children[currLastNode.children.length - 1];
-    //}
-    //if(SCUTMind.currPattern == SCUTMind.patterns.default){
-    //    var mostRight_node = currFirstNode;
-    //    if(currFirstNode.position[0] < currLastNode.position[0])
-    //        mostRight_node = currLastNode;
-    //    node.area[0] = mostRight_node.position[0] - node.position[0] + SCUTMind.currTheme.ch_element_width;
-    //    node.area[1] = currLastNode.position[1] + (currLastNode.scope[3]-currLastNode.scope[1])/2 - currFirstNode.position[1] + (currFirstNode.scope[3]-currFirstNode.scope[1])/2;
-    //}
-    //else if(SCUTMind.currPattern == SCUTMind.patterns.tree || SCUTMind.currPattern == SCUTMind.patterns.organize){
-    //    var mostBottom_node = currFirstNode;
-    //    if(currFirstNode.position[1] < currLastNode.position[1])
-    //        mostBottom_node = currLastNode;
-    //    node.area[0] = currLastNode.position[0] - currLastNode.position[0] + SCUTMind.currTheme.ch_element_width;
-    //    node.area[1] = mostBottom_node.position[1] + (mostBottom_node.scope[3]-mostBottom_node.scope[1])/2 - node.position[1] + (node.scope[3]-node.scope[1])/2;
-    //}
 };
 
 
