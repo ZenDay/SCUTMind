@@ -4,29 +4,56 @@
 $(document).ready(function() {
 	var canvas = document.getElementById('canvas');
 	var cxt = canvas.getContext('2d');
-	SCUTMind.init(cxt, 500, 800, 2000, 2000);
+	SCUTMind.init(cxt, 100, 800, 2000, 2000);
 	$('.sideBar-btn').click(function(event) {
 		
 	});
 	$('.sibling-btn').click(function(event) {
-		
+        if(SCUTMind.currNode.type == "main"){
+            alert("You can add a sibling element of the rootNode");
+            return false;
+        }
+        var position = [];
+        if(SCUTMind.currPattern == SCUTMind.patterns.default){
+            position[0] = SCUTMind.currNode.position[0];
+            position[1] = SCUTMind.currNode.position[1] + SCUTMind.currNode.area[1]/2 + SCUTMind.currTheme.brother_margin + SCUTMind.currTheme.ch_element_height/2;
+        }
+		var newNode = new MindNode("child",SCUTMind.currNode.parent, position);
+        SCUTMind.currNode.parent.addChild(newNode);
+        SCUTMind.updateArea(newNode);
+		if(SCUTMind.currPattern == SCUTMind.patterns.default)
+			SCUTMind.updatePosition(SCUTMind.rootNode, SCUTMind.rootNode.position[1] - SCUTMind.rootNode.area[1]/2);
+		else
+			SCUTMind.updatePosition(SCUTMind.rootNode, SCUTMind.rootNode.position[0] - SCUTMind.rootNode.area[0]/2);
+		SCUTMind.updateScope(SCUTMind.rootNode);
+		cxt.clearRect(0,0,500,750);
+		SCUTMind.draws(cxt, SCUTMind.rootNode);
+		return false;
 	});
 	$('.child-btn').click(function(event) {
-		var newNode = new MindNode("child",SCUTMind.currNode,[0,0]);
+        var position = [];
+        if(SCUTMind.currPattern == SCUTMind.patterns.default){
+            position[0] = SCUTMind.currNode.scope[2] + SCUTMind.currTheme.father_child_margin + SCUTMind.currTheme.ch_element_width/2;
+            if(SCUTMind.currNode.children.length == 0){
+                position[1] = SCUTMind.currNode.position[1];
+            }
+            else{
+                position[1] = SCUTMind.currNode.children[SCUTMind.currNode.children.length-1].position[1] + SCUTMind.currNode.children[SCUTMind.currNode.children.length-1].area[1]/2 + SCUTMind.currTheme.brother_margin + SCUTMind.currTheme.ch_element_height/2;
+            }
+        }
+		var newNode = new MindNode("child",SCUTMind.currNode,position);
 		SCUTMind.currNode.addChild(newNode);
 		SCUTMind.updateArea(newNode);
 		if(SCUTMind.currPattern == SCUTMind.patterns.default)
 			SCUTMind.updatePosition(SCUTMind.rootNode, SCUTMind.rootNode.position[1] - SCUTMind.rootNode.area[1]/2);
 		else
 			SCUTMind.updatePosition(SCUTMind.rootNode, SCUTMind.rootNode.position[0] - SCUTMind.rootNode.area[0]/2);
-		SCUTMind.updateArea(newNode);
-		if(SCUTMind.currPattern == SCUTMind.patterns.default)
-			SCUTMind.updatePosition(SCUTMind.rootNode, SCUTMind.rootNode.position[1] - SCUTMind.rootNode.area[1]/2);
-		else
-			SCUTMind.updatePosition(SCUTMind.rootNode, SCUTMind.rootNode.position[0] - SCUTMind.rootNode.area[0]/2);
 		SCUTMind.updateScope(SCUTMind.rootNode);
-		cxt.clearRect(0,0,500,800);
+		cxt.clearRect(0,0,500,750);
 		SCUTMind.draws(cxt, SCUTMind.rootNode);
+        var num = Math.round(Math.random());
+        if(num == 1)
+            SCUTMind.currNode = newNode;
 		return false;
 	});
     $('.delete-btn').click(function(){
