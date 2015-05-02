@@ -30,7 +30,8 @@ MindNode.prototype = {
      */
     deleteChild : function (node) {
         this.children.splice(this.children.indexOf(node),1);
-        this.area = SCUTMind.updateArea(node);
+        this.area = SCUTMind.initNewNodeArea(this);
+        SCUTMind.updateArea(this);
         return this;
     },
     /*

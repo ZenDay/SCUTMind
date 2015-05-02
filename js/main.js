@@ -2,11 +2,10 @@
 
 // The beginning function.
 $(document).ready(function() {
-	var canvas = document.getElementById('canvas');
-	var cxt = canvas.getContext('2d');
-	SCUTMind.init(cxt, 500, 100, 2000, 2000);
+    var canvas = document.getElementById('canvas');
+    var cxt = canvas.getContext('2d');
 	$('.sideBar-btn').click(function(event) {
-		
+
 	});
 	$('.sibling-btn').click(function(event) {
         if(SCUTMind.currNode.type == "main"){
@@ -30,7 +29,7 @@ $(document).ready(function() {
 		else
 			SCUTMind.updatePosition(SCUTMind.rootNode, SCUTMind.rootNode.position[0] - SCUTMind.rootNode.area[0]/2);
 		SCUTMind.updateScope(SCUTMind.rootNode);
-		cxt.clearRect(0,0,500,750);
+		cxt.clearRect(0,0,canvas.width,canvas.height);
 		SCUTMind.draws(cxt, SCUTMind.rootNode);
 		return false;
 	});
@@ -62,10 +61,8 @@ $(document).ready(function() {
 		else
 			SCUTMind.updatePosition(SCUTMind.rootNode, SCUTMind.rootNode.position[0] - SCUTMind.rootNode.area[0]/2);
 		SCUTMind.updateScope(SCUTMind.rootNode);
-		cxt.clearRect(0,0,500,750);
+		cxt.clearRect(0,0,canvas.width,canvas.height);
 		SCUTMind.draws(cxt, SCUTMind.rootNode);
-        if(Math.round(Math.random()) == 1)
-            SCUTMind.currNode = newNode;
 		return false;
 	});
     $('.delete-btn').click(function(){
@@ -82,8 +79,14 @@ $(document).ready(function() {
 		else
 			SCUTMind.updatePosition(SCUTMind.rootNode, SCUTMind.rootNode.position[0] - SCUTMind.rootNode.area[0]/2);
 		SCUTMind.updateScope(SCUTMind.rootNode);
-		cxt.clearRect(0,0,500,750);
+		cxt.clearRect(0,0,canvas.width,canvas.height);
 		SCUTMind.draws(cxt, SCUTMind.rootNode);
         return false;
     });
+    canvas.addEventListener("click", function (event) {
+        var mousePos = SCUTMind.getMousePos(canvas, event);
+        SCUTMind.updateCurrNode(SCUTMind.rootNode, mousePos);
+        cxt.clearRect(0,0,canvas.width,canvas.height);
+		SCUTMind.draws(cxt, SCUTMind.rootNode);
+    }, false);
 });

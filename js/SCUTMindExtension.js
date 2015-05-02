@@ -184,7 +184,7 @@ SCUTMind.init = function (cxt,bgWidth,bgHeight,canvasW,canvasH) {
     this.backgroundCanvas = [bgWidth,bgHeight];
     this.backgroundCenter = [bgWidth/2,bgHeight/2];
     this.currCanvasScope = [(bgWidth - canvasW)/2,(bgHeight - canvasH)/2,(bgWidth + canvasW)/2,(bgHeight + canvasH)/2];
-    this.currPattern = this.patterns.organize;
+    this.currPattern = this.patterns.default;
     this.currTheme = this.themes.default;
     this.rootNode = new MindNode("main",null,this.backgroundCenter);
     this.currNode = this.rootNode;
@@ -465,7 +465,7 @@ SCUTMind.initNodeArea = function (node){
 
 
 /*
- @method updateArea
+ @method updateArea.
  @param node {MindNode} this node and its ancestors' areas will be init.
  @nothing to return.
 */
@@ -473,5 +473,36 @@ SCUTMind.updateArea = function(node){
     this.initNodeArea(node);
     if(node.parent != null){
         this.updateArea(node.parent);
+    }
+}
+
+
+/*
+ @method getMousePos.
+ @param canvas {html element} the main canvas.
+ @param event {js event} the event happen.
+ @return mousePos {object} the mouse position.
+*/
+SCUTMind.getMousePos = function(canvas, event) {
+    var rect = canvas.getBoundingClientRect();
+    var mousePos = [
+        parseInt(event.clientX * (canvas.width / rect.width)),
+        parseInt(event.clientY * (canvas.height / rect.height))
+    ];
+    return mousePos;
+ };
+
+/*
+ @method updateCurrNode.
+ @param node {MindNode} the rootNode of the SCUTMind.
+ @param mousePos {array} the position of mouse click.
+ @nothing to return.
+*/
+SCUTMind.updateCurrNode = function(node, mousePos){
+    if(node.contains(mousePos)){
+        this.currNode = node;
+    }
+    for(var i=0; i<node.children.length; i++) {
+        this.updateCurrNode(node.children[i],mousePos);
     }
 }

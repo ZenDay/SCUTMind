@@ -9,7 +9,7 @@
 	<title>SCUTMind</title>
 </head>
 <body>
-	<canvas id="canvas" width="500" height="750">您的浏览器不支持canvas，请更换浏览器后尝试</canvas>
+	<canvas id="canvas">您的浏览器不支持canvas，请更换浏览器后尝试</canvas>
 	<div id="toolBar" class="toolBar">
 		<div class="fixed-l">
 			<a href="#" class="sideBar-btn"><img src="icons/menu4.png" height="30" width="30"></a>
@@ -74,6 +74,12 @@
             var margin_top = (colorBar_tag_a_height - colorBar_img_height)*0.4;
             colorBar_img[i].style.marginTop = margin_top+"px";
         }
+        var canvas = document.getElementById('canvas');
+	    var cxt = canvas.getContext('2d');
+        var rect = canvas.getBoundingClientRect();
+        canvas.width =  (rect.right-rect.left)*1.5;
+        canvas.height = (rect.bottom-rect.top)*1.5;
+	    SCUTMind.init(cxt, canvas.width, canvas.height, 2000, 2000);
     }
 	</script>
     <script type="text/javascript" src="js/main.js"></script>
