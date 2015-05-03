@@ -4,8 +4,8 @@
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1">
     <link rel="stylesheet" type="text/css" href="css/main.css">
-	<!--<link rel="stylesheet" type="text/css" href="css/swiper.min.css">-->
-    <script type="text/javascript" src="jquery/jquery-1.11.2.min.js"></script>
+	<link rel="stylesheet" type="text/css" href="css/swiper.min.css">
+    <script type="text/javascript" src="js/jquery-1.11.2.min.js"></script>
     <script type="text/javascript" src="js/MindNode.js"></script>
     <script type="text/javascript" src="js/SCUTMindExtension.js"></script>
     <title>SCUTMind</title>
@@ -16,8 +16,7 @@
 			<a href="#" class="sideBar-btn"><img src="icons/menu.png" height="75%"></a>
 			<a href="#" class="sibling-btn"><img src="icons/sibling3.png" height="75%"><!--<br><span>sibling</span>--></a>
 			<a href="#" class="child-btn"><img src="icons/child3.png" height="75%"><!--<br><span>child</span>--></a>
-			<!--<a href="#" class="text"><img src="icons/text3.png" height="75%"></a>-->
-			<!--<a href="#" class="shape-btn"><img src="icons/theme4.png" height="75%"><br><span>theme</span></a>-->
+			<a href="#" class="text"><img src="icons/text3.png" height="75%"></a>
 			<a href="#" class="delete-btn"><img src="icons/delete3.png" height="75%"><!--<br><span>delete</span>--></a>
 	</div>
 	<div class="clear"></div>
@@ -35,7 +34,7 @@
 		</div>
 		<div class="swiper-pagination"></div>
 	</div>
-	<!--<script src="js/swiper.min.js"></script>-->
+	<script src="js/swiper.min.js"></script>
 	<script type="text/javascript">
 	window.onload = function(){
         //调整canvas的宽高
@@ -78,10 +77,10 @@
         canvas.height = (rect.bottom-rect.top)*1.5;
         SCUTMind.init(cxt, canvas.width, canvas.height, 2000, 2000);
 
-//        var swiper = new Swiper('.swiper-container', {
-//            slidesPerView: 3,
-//            freeMode: true
-//        });
+        var swiper = new Swiper('.swiper-container', {
+            slidesPerView: 3,
+            freeMode: true
+       });
     };
 	</script>
     <script type="text/javascript" src="js/main.js"></script>
