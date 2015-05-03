@@ -5,14 +5,14 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1">
     <link rel="stylesheet" type="text/css" href="css/main.css">
     <link rel="stylesheet" type="text/css" href="css/slide.css"/>
-	<link rel="stylesheet" type="text/css" href="css/swiper.min.css">
+    <link rel="stylesheet" type="text/css" href="css/swiper.min.css">
     <script type="text/javascript" src="js/jquery-1.11.2.min.js"></script>
     <script type="text/javascript" src="js/MindNode.js"></script>
     <script type="text/javascript" src="js/SCUTMindExtension.js"></script>
     <script type="text/javascript" src="js/slide.js"></script>
     <title>SCUTMind</title>
 </head>
-<body>
+<body scroll="no">
 	<canvas id ="canvas">您的浏览器不支持canvas，请更换浏览器后尝试</canvas>
     <input type='checkbox' id='sideToggle'>
     <aside>
@@ -44,12 +44,31 @@
                 </a>
             </div>
         </div>
+<<<<<<< HEAD
+=======
+        <div>
+          <a href="#" class="tree">
+            <img class="tree" src="pattern/tree.png" >
+          </a>
+        </div>
+        <div>
+          <a href="#" class="organization">
+            <img class="organization" src="pattern/organization.png" >
+          </a>
+        </div>
+         <div>
+          <a href="#" class="save">
+            <img class="save" src="pattern/savee.png">
+          </a>
+        </div>
+      </div>
+>>>>>>> 391bff310dc31023e04969ce215e00a65a46366f
     </aside>
 	<div id="toolBar" class="toolBar">
-            <a href="#" class="sideBar-btn" id='wrap'>
-                <label id='sideMenuControl' for='sideToggle'><img src="icons/menu.png" height="75%"></label>
-            </a>
-			<a href="#" class="sibling-btn"><img src="icons/sibling3.png" height="75%"><!--<br><span>sibling</span>--></a>
+      <a href="#" class="sideBar-btn" id='wrap'>
+          <label id='sideMenuControl' for='sideToggle'><img src="icons/menu.png" height="75%"></label>
+      </a>
+			<a href="#" class="sibling-btn"><img src="icons/sibling3.png" height="75%"></a>
 			<a href="#" class="child-btn"><img src="icons/child3.png" height="75%"><!--<br><span>child</span>--></a>
 			<a href="#" class="text" onClick=showDlg()><img src="icons/text3.png" height="75%"></a>
 			<a href="#" class="delete-btn"><img src="icons/delete3.png" height="75%"><!--<br><span>delete</span>--></a>
@@ -104,7 +123,6 @@
         var selectionBarHeight = $("#selectionBar").height();
         $("#canvas").width(bodyWidth);
         $("#canvas").height(bodyHeight-toolBarHeight-selectionBarHeight-1);
-        $("#canvas").attr("height","300");
         //调整工具栏图片margin，使之垂直居中
         var toolBar_tag_a = document.getElementById("toolBar").getElementsByTagName("a");
         var toolBar_img = document.getElementById("toolBar").getElementsByTagName("img");
