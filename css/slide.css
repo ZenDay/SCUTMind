@@ -1,33 +1,3 @@
-*
-{
-  margin:0; padding:0; 
-}
-
-html
-{
-  height:100%; 
-}
-
-p
-{
-  padding:2% 0;
-  font-family: "方正舒体简体";
-}
-
-body
-{ 
-  min-height:100%; 
-  font-family:arial; 
-  position:relative; 
-}
-
-body.sideMenu
-{ 
-  margin:0; 
-  -webkit-transform:none; 
-  transform:none; 
-}
-
 #sideToggle
 { 
   display:none;
@@ -36,11 +6,6 @@ body.sideMenu
 #sideToggle:checked + aside
 { 
   left:0; 
-}
-
-#sideToggle:checked ~ #wrap
-{ 
-  padding-left:27%; 
 }
 
 #sideToggle:checked ~ #element
@@ -52,28 +17,24 @@ body > aside
 { 
   position:absolute;
   top:0; bottom:0;
-  left:-27%; 
-  width:25%; 
-  background:rgb(223,223,223); 
+  left:-30%; 
+  width:27%; 
+  background:rgba(223,223,223,0.5); 
   transition:0.2s ease-out; 
   -webkit-transition:0.2s ease-out; 
 }
 
 body > aside > h2
 { 
-  margin-top:20%;
-  margin-bottom:22%;
-  font-family: Chaparral Pro Light;
+  padding-top:15%;
+  padding-bottom: 10%;
+  margin-bottom:50%;
+  margin-top: 0;
+  font-family: Calibri;
   text-align: center;
-  font-size:3em;
-}
-
-#wrap
-{ 
-  margin-left:3%; 
-  padding:5% 0%; 
-  transition:0.2s ease-out; 
-  -webkit-transition:0.2s ease-out; 
+  font-size:400%;
+  color:rgb(223,223,223);
+  background:#33475f;
 }
 
 #element
@@ -84,32 +45,6 @@ body > aside > h2
   -webkit-transition:0.2s ease-out; 
 }
 
-wrap > label
-{ 
-  display:inline-block; 
-}
-
-#wrap > label
-{ 
-  background:rgb(22,39,52);
-  border-radius:10%;
-  color: #FFF;
-  cursor: pointer;
-  display: block;
-  font-family: Courier New;
-  font-size: 150%;
-  font-weight: bold;
-  width:7%;
-  height:7%;
-  line-height: 130%;
-  text-align: center;
-  text-shadow: 0 4px;
-}
-
-#wrap > label:hover
-{ 
-  background:#000; 
-}
 
 #patterns
 {
@@ -117,49 +52,99 @@ wrap > label
   text-align:center; 
 }
 
-img
-{
-  height:90%;
-  width:90%;
-  margin-bottom:25%;
-}
-
-img.save
+#patterns img
 {
   height:100%;
   width:100%;
-  margin-top:5%;
-  margin-bottom:15%;
-  text-align: center;
+  margin-bottom:75%;
 }
 
-a
+#patterns img.organization
 {
-  background:rgb(22,39,52);
-  border-radius:10%;
-  color: #FFF;
-  cursor: pointer;
-  text-decoration:none;
-  font-family: "方正舒体简体";
-  font-size: 150%;
-  font-weight: bold;
-  line-height: 130%;
+   margin-bottom:50%;
+}
+
+#patterns img.save
+{
+  height:90%;
+  width:90%;
   text-align: center;
+  margin-bottom:10%;
+}
+
+#patterns img.return
+{
+  height:50%;
+  width:50%;
+  margin-bottom:10%;
+}
+
+#remind
+{
+  padding-top: 3%;
+  padding-left: 5%;
+  height: 8%; 
+  text-align: left;
+  font-family: "Chaparral Pro Light";
+  font-size: 240%;
+  color: #ffffff;
+}
+
+#head
+{
+  background-color: #33475f;
+  height: 9%; 
+  padding-top: 3%;
+  text-align: center;
+  color: #ffffff;
+  font-family: "Chaparral Pro Light";
+  font-size: 230%;
+  font-style: bold;
+  border-radius:20px 20px 0 0;
+}
+
+#textbox
+{
+  height:65%;
+  width:85%;
+  padding:none;
+  text-align: center;
+  margin-left: 7%;
+  font-size: 230%;
+  border-radius:10px 10px 10px 10px;
+}
+
+.button
+{
+  height:75%;
+  width:30%;
+  margin-left: 13%;
+  text-align: center;
+  font-family: "Chaparral Pro Light";
+  font-size: 200%;
+  font-style: bold;
+  padding-top: 1%;
+  background-color: #33475f;
+  color: #ffffff;  
+  border-radius:10px 10px 10px 10px;
+  border:1px dotted #ffffff; 
+
+  
 }
 
 .hideDlg
 {
-    height:129px;width:368px;
+    height:15%;width:50%;
     display:none;
 }
 
 .showDlg
 {
-    background-color:#ffffdd;
-    border-width:3px;
-    border-style:solid;
-    height:129px;width:368px;
+    background-color:#4d8b8a;
+    height:17%;
+    width:50%;
     position: absolute; 
+    border-radius:20px 20px 20px 20px;
     display:block;
     z-index:5;
 }
@@ -167,10 +152,10 @@ a
 .showDeck 
 {
     display:block;
-    top:0px;
-    left:0px;
-    margin:0px;
-    padding:0px;
+    top:0%;
+    left:0%;
+    margin:0%;
+    padding:0%;
     width:100%;
     height:100%;
     position:absolute;

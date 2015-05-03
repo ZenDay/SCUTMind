@@ -53,8 +53,8 @@
             
             if (window.innerWidth)
             {
-                oLeft=window.pageXOffset+(window.innerWidth-w)/2 +"px";
-                oTop=window.pageYOffset+(window.innerHeight-h)/2 +"px";
+                oLeft=(window.pageXOffset+(window.innerWidth-w)/2) *0.8+"px";
+                oTop=(window.pageYOffset+(window.innerHeight-h)/2)*0.5 +"px";
             }
             else
             {
