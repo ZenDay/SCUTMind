@@ -8,6 +8,8 @@ html,body,div,ul,li,a,span,p,img,canvas{
 body,html{
 	width: 100%;
 	height: 100%;
+	overflow-x:hidden;
+	overflow-y:hidden;
 }
 
 a{
@@ -19,11 +21,7 @@ a{
 }
 
 #canvas{
-   /*border-width: 5px;
-   border-color : #2C3A72; 
-   border-style: ridge ridge none ridge;*/
    display: block;
-   /*background-color: #DCE7E6;*/
 }
 
 
@@ -53,8 +51,8 @@ a{
 	-webkit-border-radius: 5px;
     -moz-border-radius: 5px;
     color: #fff;
-    width : 60%;
-    margin-left: 20%;
+    width : 80%;
+    margin-left: 10%;
 }
 
 #gray{
