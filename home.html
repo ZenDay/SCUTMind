@@ -70,7 +70,7 @@
             </tr>
             <tr>
                 <td>
-                    <input id="textbox" name="TextBox1" type="text" id="TextBox1" maxlength="8" value="输入少于8的文字" onfocus="javascript:if(this.value=='输入少于8的文字')this.value='';" onblur="javascript:if(this.value=='')this.value='输入少于8的文字';" />
+                    <input id="textbox" name="TextBox1" type="text" id="TextBox1" maxlength="8" value="输入少于8的文字" onfocus="javascript:if(this.value=='输入少于8的文字')this.value='';" onblur="javascript:if(this.value=='')this.value='输入少于8的文字';" onkeyup="value=value.replace(/[^\u4E00-\u9FA5]/g,'')" onpaste="value=value.replace(/[^\u4E00-\u9FA5]/g,'')" oncontextmenu = "value=value.replace(/[^\u4E00-\u9FA5]/g,'')"  />
                 </td>
             </tr>
             <tr>

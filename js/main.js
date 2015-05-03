@@ -78,7 +78,6 @@ $(document).ready(function() {
         }
 		var newNode = new MindNode("child",SCUTMind.currNode,position);
 		SCUTMind.currNode.addChild(newNode);
-        newNode.text = "中心主题的";
         newNode.scope = SCUTMind.initNodeScope("child",newNode.position,newNode.text);
 		SCUTMind.updateArea(newNode);
 		if(SCUTMind.currPattern == SCUTMind.patterns.default)
@@ -175,7 +174,7 @@ $(document).ready(function() {
     });
     $('#OK').click(function(){
         var text = $('#textbox').val();
-        if(text != "请输入8个文字"){
+        if(text != "输入少于8的文字"){
             SCUTMind.currNode.text = text;
         }
         SCUTMind.updateAllArea(SCUTMind.rootNode);

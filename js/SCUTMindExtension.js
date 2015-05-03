@@ -372,10 +372,6 @@ SCUTMind.init = function (cxt,bgWidth,bgHeight,canvasW,canvasH) {
     this.currPattern = this.patterns.default;
     this.currTheme = this.themes.default;
     this.rootNode = new MindNode("main",null,this.backgroundCenter);
-
-    this.rootNode.text = "中心主题的";
-    this.rootNode.scope = this.initNodeScope("main",this.rootNode.position,this.rootNode.text);
-
     this.currNode = this.rootNode;
     this.draws(cxt, this.rootNode);
     return this;
