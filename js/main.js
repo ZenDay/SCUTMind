@@ -113,12 +113,6 @@ $(document).ready(function() {
         //调整位置至居中
         adjustLocation();
     });
-    $('#OK').click(function(){
-
-        document.getElementById('divBox').className='hideDlg';
-        document.getElementById("deck").className="hideDeck";
-        hideOrShowSelect(false);
-    });
     $('.delete-btn').click(function(){
         if(SCUTMind.currNode.type == "main"){
             alert("You can't delete the rootNode!");
@@ -170,31 +164,46 @@ $(document).ready(function() {
         cxt.clearRect(0,0,canvas.width,canvas.height);
         SCUTMind.draws(cxt, SCUTMind.rootNode);
     });
+    $('#mask').click(function(){
+        document.getElementById("aside").style.cssText="left:-27%;";
+        document.getElementById("mask").style.cssText="left:-100%;";
+    });
+    $('#deck').click(function(){
+        document.getElementById('divBox').className='hideDlg';
+        document.getElementById("deck").className="hideDeck";
+        hideOrShowSelect(false);
+    });
+    $('#OK').click(function(){
+        var text = $('#textbox').val();
+        if(text != "请输入8个文字"){
+            SCUTMind.currNode.text = text;
+        }
+        SCUTMind.updateAllArea(SCUTMind.rootNode);
+        for(var i=0; i<10; i++){
+            if(SCUTMind.currPattern == SCUTMind.patterns.default)
+                SCUTMind.updatePosition(SCUTMind.rootNode, SCUTMind.rootNode.position[1] - SCUTMind.rootNode.area[1]/2);
+            else
+                SCUTMind.updatePosition(SCUTMind.rootNode, SCUTMind.rootNode.position[0] - SCUTMind.rootNode.area[0]/2);
+            SCUTMind.updateScope(SCUTMind.rootNode);
+        }
+        cxt.clearRect(0,0,canvas.width,canvas.height);
+        SCUTMind.draws(cxt, SCUTMind.rootNode);
+        document.getElementById('divBox').className='hideDlg';
+        document.getElementById("deck").className="hideDeck";
+        hideOrShowSelect(false);
+    });
     canvas.addEventListener("click", function (event) {
         var mousePos = SCUTMind.getMousePos(canvas, event);
         SCUTMind.updateCurrNode(SCUTMind.rootNode, mousePos);
         cxt.clearRect(0,0,canvas.width,canvas.height);
 		SCUTMind.draws(cxt, SCUTMind.rootNode);
     }, false);
-
-    $('#mask').click(function(){
-        document.getElementById("aside").style.cssText="left:-27%;";
-        document.getElementById("mask").style.cssText="left:-100%;";
-    });
-
-    $('#deck').click(function(){
-        document.getElementById('divBox').className='hideDlg';
-        document.getElementById("deck").className="hideDeck";
-        hideOrShowSelect(false);
-    });
 });
 
 function hideOrShowSelect(v)
 {
     var allselect = document.getElementsByTagName("select");
-    for (var i=0; i<allselect.length; i++)
-    {
-    //allselect[i].style.visibility = (v==true)?"hidden":"visible";
+    for (var i=0; i<allselect.length; i++) {
         allselect[i].disabled =(v==true)?"disabled":"";
     }
 }
@@ -202,22 +211,17 @@ function hideOrShowSelect(v)
 function adjustLocation()
 {
     var obox=document.getElementById('divBox');
-    if (obox !=null && obox.style.display !="none")
-    {
+    if (obox !=null && obox.style.display !="none") {
         var oLeft,oTop;
-            
-        if (window.innerWidth)
-        {
+        if (window.innerWidth) {
             oLeft=(window.pageXOffset+window.innerWidth/2)*0.5+"px";
             oTop=(window.pageYOffset+window.innerHeight/2)*0.65 +"px";
         }
-        else
-        {
+        else {
             var dde=document.documentElement;
             oLeft=dde.scrollLeft+(dde.offsetWidth-w)/2 +"px";
             oTop=dde.scrollTop+(dde.offsetHeight-h)/2 +"px";
         }
-            
         obox.style.left=oLeft;
         obox.style.top=oTop;
     }

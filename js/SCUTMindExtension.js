@@ -25,8 +25,8 @@ SCUTMind.themes = {
         line_color : "#8e8e8e",
         focus_border_color : "rgba(0,0,0,.2)",
         common_border_color : "#ccc",
-        focus_border_width : 1,
-        common_border_width : 1,
+        focus_border_width : 2,
+        common_border_width : 2,
 
         //ancestor_color
         anc_element_color : "#ccc",
@@ -474,6 +474,7 @@ SCUTMind.draw = function (cxt,node) {
             cxt.closePath();
             if(SCUTMind.currNode == node){
                 cxt.beginPath();
+                cxt.lineWidth = SCUTMind.currTheme.focus_border_width;
                 cxt.strokeStyle = SCUTMind.currTheme.focus_border_color;
                 cxt.arc(node.position[0], node.position[1], SCUTMind.currTheme.anc_element_width/2+SCUTMind.currTheme.focus_border_width, 0*Math.PI, 2*Math.PI);
                 cxt.stroke();
@@ -481,6 +482,7 @@ SCUTMind.draw = function (cxt,node) {
             }
             else{
                 cxt.beginPath();
+                cxt.lineWidth = SCUTMind.currTheme.common_border_width;
                 cxt.strokeStyle = SCUTMind.currTheme.common_border_color;
                 cxt.arc(node.position[0], node.position[1], SCUTMind.currTheme.anc_element_width/2+SCUTMind.currTheme.common_border_width, 0*Math.PI, 2*Math.PI);
                 cxt.stroke();
@@ -495,15 +497,17 @@ SCUTMind.draw = function (cxt,node) {
             cxt.closePath();
             if(SCUTMind.currNode == node){
                 cxt.beginPath();
+                cxt.lineWidth = SCUTMind.currTheme.focus_border_width;
                 cxt.strokeStyle = SCUTMind.currTheme.focus_border_color;
-                cxt.rect(node.scope[0]-SCUTMind.currTheme.focus_border_width, node.scope[1]-SCUTMind.currTheme.focus_border_width, SCUTMind.currTheme.anc_element_width+SCUTMind.currTheme.focus_border_width*2, node.scope[3]-node.scope[1]+SCUTMind.currTheme.focus_border_width*2);
+                cxt.rect(node.scope[0]-SCUTMind.currTheme.focus_border_width/2, node.scope[1]-SCUTMind.currTheme.focus_border_width/2, SCUTMind.currTheme.anc_element_width+SCUTMind.currTheme.focus_border_width, node.scope[3]-node.scope[1]+SCUTMind.currTheme.focus_border_width);
                 cxt.stroke();
                 cxt.closePath();
             }
             else{
                 cxt.beginPath();
+                cxt.lineWidth = SCUTMind.currTheme.common_border_width;
                 cxt.strokeStyle = SCUTMind.currTheme.common_border_color;
-                cxt.rect(node.scope[0]-SCUTMind.currTheme.common_border_width, node.scope[1]-SCUTMind.currTheme.common_border_width, SCUTMind.currTheme.anc_element_width+SCUTMind.currTheme.common_border_width*2, node.scope[3]-node.scope[1]+SCUTMind.currTheme.common_border_width*2);
+                cxt.rect(node.scope[0]-SCUTMind.currTheme.common_border_width/2, node.scope[1]-SCUTMind.currTheme.common_border_width/2, SCUTMind.currTheme.anc_element_width+SCUTMind.currTheme.common_border_width, node.scope[3]-node.scope[1]+SCUTMind.currTheme.common_border_width);
                 cxt.stroke();
                 cxt.closePath();
             }
@@ -511,11 +515,11 @@ SCUTMind.draw = function (cxt,node) {
         cxt.font = "bold 19px BELLB";
         cxt.fillStyle = SCUTMind.currTheme.anc_text_color;
         if(need_newline) {
-            cxt.fillText(front_text, node.position[0]-40, node.position[1]);
-            cxt.fillText(last_text, node.position[0]-(text_num-4)*20/2, node.position[1] + 20);
+            cxt.fillText(front_text, node.position[0]-40, node.position[1]-1);
+            cxt.fillText(last_text, node.position[0]-(text_num-4)*20/2, node.position[1] + 21);
         }
         else{
-            cxt.fillText(node.text, node.position[0]-text_num*20/2, node.position[1] + 20);
+            cxt.fillText(node.text, node.position[0]-text_num*20/2, node.position[1]+9);
         }
     }
     else{
@@ -526,15 +530,17 @@ SCUTMind.draw = function (cxt,node) {
         cxt.closePath();
         if(SCUTMind.currNode == node) {
             cxt.beginPath();
+            cxt.lineWidth = SCUTMind.currTheme.focus_border_width;
             cxt.strokeStyle = SCUTMind.currTheme.focus_border_color;
-            cxt.rect(node.scope[0]-SCUTMind.currTheme.focus_border_width, node.scope[1] - SCUTMind.currTheme.focus_border_width, SCUTMind.currTheme.ch_element_width+SCUTMind.currTheme.focus_border_width*2, node.scope[3]-node.scope[1]+SCUTMind.currTheme.focus_border_width*2);
+            cxt.rect(node.scope[0]-SCUTMind.currTheme.focus_border_width/2, node.scope[1] - SCUTMind.currTheme.focus_border_width/2, SCUTMind.currTheme.ch_element_width+SCUTMind.currTheme.focus_border_width, node.scope[3]-node.scope[1]+SCUTMind.currTheme.focus_border_width);
             cxt.stroke();
             cxt.closePath();
         }
         else{
             cxt.beginPath();
+            cxt.lineWidth = SCUTMind.currTheme.focus_border_width;
             cxt.strokeStyle = SCUTMind.currTheme.common_border_color;
-            cxt.rect(node.scope[0]-SCUTMind.currTheme.common_border_width, node.scope[1] - SCUTMind.currTheme.common_border_width, SCUTMind.currTheme.ch_element_width+SCUTMind.currTheme.common_border_width*2, node.scope[3]-node.scope[1]+SCUTMind.currTheme.common_border_width*2);
+            cxt.rect(node.scope[0]-SCUTMind.currTheme.common_border_width/2, node.scope[1] - SCUTMind.currTheme.common_border_width/2, SCUTMind.currTheme.ch_element_width+SCUTMind.currTheme.common_border_width, node.scope[3]-node.scope[1]+SCUTMind.currTheme.common_border_width);
             cxt.stroke();
             cxt.closePath();
         }
@@ -542,11 +548,11 @@ SCUTMind.draw = function (cxt,node) {
         cxt.font = "bold 12px BELLB";
         cxt.fillStyle = SCUTMind.currTheme.ch_text_color;
         if(need_newline) {
-            cxt.fillText(front_text, node.position[0]-24, node.position[1]);
-            cxt.fillText(last_text, node.position[0]-(text_num-4)*12/2, node.position[1] + 12);
+            cxt.fillText(front_text, node.position[0]-24, node.position[1]-1);
+            cxt.fillText(last_text, node.position[0]-(text_num-4)*12/2, node.position[1] + 13);
         }
         else{
-            cxt.fillText(node.text, node.position[0]-text_num*12/2, node.position[1] + 12);
+            cxt.fillText(node.text, node.position[0]-text_num*12/2, node.position[1] + 5);
         }
     }
     cxt.strokeStyle = SCUTMind.currTheme.line_color;
