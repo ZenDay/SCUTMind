@@ -479,6 +479,13 @@ SCUTMind.draw = function (cxt,node) {
                 cxt.stroke();
                 cxt.closePath();
             }
+            else{
+                cxt.beginPath();
+                cxt.strokeStyle = SCUTMind.currTheme.common_border_color;
+                cxt.arc(node.position[0], node.position[1], SCUTMind.currTheme.anc_element_width/2+SCUTMind.currTheme.common_border_width, 0*Math.PI, 2*Math.PI);
+                cxt.stroke();
+                cxt.closePath();
+            }
         }
         else{
             cxt.beginPath();
@@ -490,6 +497,13 @@ SCUTMind.draw = function (cxt,node) {
                 cxt.beginPath();
                 cxt.strokeStyle = SCUTMind.currTheme.focus_border_color;
                 cxt.rect(node.scope[0]-SCUTMind.currTheme.focus_border_width, node.scope[1]-SCUTMind.currTheme.focus_border_width, SCUTMind.currTheme.anc_element_width+SCUTMind.currTheme.focus_border_width*2, node.scope[3]-node.scope[1]+SCUTMind.currTheme.focus_border_width*2);
+                cxt.stroke();
+                cxt.closePath();
+            }
+            else{
+                cxt.beginPath();
+                cxt.strokeStyle = SCUTMind.currTheme.common_border_color;
+                cxt.rect(node.scope[0]-SCUTMind.currTheme.common_border_width, node.scope[1]-SCUTMind.currTheme.common_border_width, SCUTMind.currTheme.anc_element_width+SCUTMind.currTheme.common_border_width*2, node.scope[3]-node.scope[1]+SCUTMind.currTheme.common_border_width*2);
                 cxt.stroke();
                 cxt.closePath();
             }
@@ -514,6 +528,13 @@ SCUTMind.draw = function (cxt,node) {
             cxt.beginPath();
             cxt.strokeStyle = SCUTMind.currTheme.focus_border_color;
             cxt.rect(node.scope[0]-SCUTMind.currTheme.focus_border_width, node.scope[1] - SCUTMind.currTheme.focus_border_width, SCUTMind.currTheme.ch_element_width+SCUTMind.currTheme.focus_border_width*2, node.scope[3]-node.scope[1]+SCUTMind.currTheme.focus_border_width*2);
+            cxt.stroke();
+            cxt.closePath();
+        }
+        else{
+            cxt.beginPath();
+            cxt.strokeStyle = SCUTMind.currTheme.common_border_color;
+            cxt.rect(node.scope[0]-SCUTMind.currTheme.common_border_width, node.scope[1] - SCUTMind.currTheme.common_border_width, SCUTMind.currTheme.ch_element_width+SCUTMind.currTheme.common_border_width*2, node.scope[3]-node.scope[1]+SCUTMind.currTheme.common_border_width*2);
             cxt.stroke();
             cxt.closePath();
         }
