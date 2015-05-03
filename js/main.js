@@ -55,6 +55,8 @@ $(document).ready(function() {
         }
 		var newNode = new MindNode("child",SCUTMind.currNode,position);
 		SCUTMind.currNode.addChild(newNode);
+        newNode.text = "中心主题的";
+        newNode.scope = SCUTMind.initNodeScope("child",newNode.position,newNode.text);
 		SCUTMind.updateArea(newNode);
 		if(SCUTMind.currPattern == SCUTMind.patterns.default)
 			SCUTMind.updatePosition(SCUTMind.rootNode, SCUTMind.rootNode.position[1] - SCUTMind.rootNode.area[1]/2);
@@ -66,7 +68,7 @@ $(document).ready(function() {
 		return false;
 	});
     $('.delete-btn').click(function(){
-    	if(SCUTMind.currNode.type == "main"){
+        if(SCUTMind.currNode.type == "main"){
             alert("You can't delete the rootNode!");
             return false;
         }
@@ -81,6 +83,7 @@ $(document).ready(function() {
 		SCUTMind.updateScope(SCUTMind.rootNode);
 		cxt.clearRect(0,0,canvas.width,canvas.height);
 		SCUTMind.draws(cxt, SCUTMind.rootNode);
+
         return false;
     });
     $('.swiper-slide a').click(function(){
@@ -104,6 +107,12 @@ $(document).ready(function() {
             SCUTMind.currTheme = SCUTMind.themes.theme_soft;
         else if(this_id == "circle")
             SCUTMind.currTheme = SCUTMind.themes.theme_circle;
+        SCUTMind.updateScope(SCUTMind.rootNode);
+        SCUTMind.updateAllArea(SCUTMind.rootNode);
+        if(SCUTMind.currPattern == SCUTMind.patterns.default)
+			SCUTMind.updatePosition(SCUTMind.rootNode, SCUTMind.rootNode.position[1] - SCUTMind.rootNode.area[1]/2);
+		else
+			SCUTMind.updatePosition(SCUTMind.rootNode, SCUTMind.rootNode.position[0] - SCUTMind.rootNode.area[0]/2);
         SCUTMind.updateScope(SCUTMind.rootNode);
         cxt.clearRect(0,0,canvas.width,canvas.height);
         SCUTMind.draws(cxt, SCUTMind.rootNode);

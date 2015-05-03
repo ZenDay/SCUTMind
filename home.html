@@ -13,37 +13,37 @@
     <title>SCUTMind</title>
 </head>
 <body>
-	<canvas id ="canvas" width="500" height="800">您的浏览器不支持canvas，请更换浏览器后尝试</canvas>
+	<canvas id ="canvas">您的浏览器不支持canvas，请更换浏览器后尝试</canvas>
     <input type='checkbox' id='sideToggle'>
     <aside>
-      <h2>Menu</h2>
-      <div id="patterns">
-        <div>
-          <a href="#" class="right">
-            <img class="right" src="pattern/right.png">
-          </a>
+        <h2>Menu</h2>
+        <div id="patterns">
+            <div>
+                <a href="#" class="right">
+                    <img class="right" src="pattern/right.png">
+                </a>
+            </div>
+            <div>
+                <a href="#" class="tree">
+                    <img class="tree" src="pattern/tree.png" >
+                </a>
+            </div>
+            <div>
+                <a href="#" class="organization">
+                    <img class="organization" src="pattern/organization.png" >
+                </a>
+            </div>
+            <div>
+                <a href="#" class="save">
+                    <img class="save" src="pattern/save.png">
+                </a>
+            </div>
+            <div>
+                <a href="#" class="return">
+                    <label id='sideMenuControl' for='sideToggle'><img class="return"  src="pattern/return.ico" alt="return"></label>
+                </a>
+            </div>
         </div>
-        <div>
-          <a href="#" class="tree">
-            <img class="tree" src="pattern/tree.png" >
-          </a>
-        </div>
-        <div>
-          <a href="#" class="organization">
-            <img class="organization" src="pattern/organization.png" >
-          </a>
-        </div>
-         <div>
-          <a href="#" class="save">
-            <img class="save" src="pattern/save.png">
-          </a>
-        </div>
-        <div>
-          <a href="#" class="return">
-            <label id='sideMenuControl' for='sideToggle'><img class="return"  src="pattern/return.ico" alt="return"></label>
-          </a>
-        </div>
-      </div>
     </aside>
 	<div id="toolBar" class="toolBar">
             <a href="#" class="sideBar-btn" id='wrap'>
@@ -69,6 +69,31 @@
 		</div>
 		<div class="swiper-pagination"></div>
 	</div>
+    <div id="divBox" class="hideDlg" style="" >
+        <table width="100%" style="height:100%; width: 100%;" id="table1">
+            <tr>
+                <td id="head" colspan="3">Text</td>
+            </tr>
+            <tr>
+                <td id="remind" colspan="3">Please  input  content</td>
+            </tr>
+            <tr>
+                <td></td>
+                <td>
+                  <input id="textbox" name="TextBox1" type="text" id="TextBox1" />
+                </td>
+                <td></td>
+            </tr>
+            <tr>
+                <td></td>
+                <td>
+                  <input id="OK" class="button" type="button" name="Button1" value="OK" size="10" onclick="alert(TextBox1.value)"/>
+                  <input id="Cancle" class="button" type="button" name="Button2" value="Cancel" size="10" onclick="cancel();" />
+                </td>
+                <td></td>
+            </tr>
+        </table>
+    </div>
 	<script src="js/swiper.min.js"></script>
 	<script type="text/javascript">
 	window.onload = function(){
@@ -115,36 +140,9 @@
         var swiper = new Swiper('.swiper-container', {
             slidesPerView: 3,
             freeMode: true
-       });
+        });
     };
 	</script>
     <script type="text/javascript" src="js/main.js"></script>
-
-    <div id="divBox" class="hideDlg" style="" >
-        <table width="100%" style="height:100%; width: 100%;" id="table1">
-          <tr>
-            <td id="head" colspan="3">Text</td>
-          </tr>
-          <tr>
-            <td id="remind" colspan="3">Please  input  content</td>
-          </tr>
-          <tr>
-            <td></td>
-            <td>
-              <input id="textbox" name="TextBox1" type="text" id="TextBox1" />
-            </td>
-            <td></td>
-          </tr>
-          <tr>
-            <td></td>
-            <td>
-              <input id="OK" class="button" type="button" name="Button1" value="OK" size="10" onclick="alert(TextBox1.value)"/>
-              <input id="Cancle" class="button" type="button" name="Button2" value="Cancel" size="10" onclick="cancel();" />
-            </td>
-            <td></td>
-          </tr>
-        </table>
-      </div>
-
 </body>
 </html>

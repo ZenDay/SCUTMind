@@ -23,7 +23,7 @@ SCUTMind.themes = {
         //decoration
         background_color : "#fff",
         line_color : "#8e8e8e",
-        focus_border_color : "rgba(0,0,0,.5)",
+        focus_border_color : "rgba(0,0,0,.2)",
         common_border_color : "#ccc",
         focus_border_width : 1,
         common_border_width : 1,
@@ -67,7 +67,7 @@ SCUTMind.themes = {
 
         //ancestor_color
         anc_element_color : "#00c5ad",
-        anc_text_color : "fff",
+        anc_text_color : "#fff",
 
         //child_color
         ch_element_color : "#A6FBD8",
@@ -104,7 +104,7 @@ SCUTMind.themes = {
 
         //ancestor_color
         anc_element_color : "#fac75b",
-        anc_text_color : "fff",
+        anc_text_color : "#fff",
 
         //child_color
         ch_element_color : "#FEE4C2",
@@ -141,7 +141,7 @@ SCUTMind.themes = {
 
         //ancestor_color
         anc_element_color : "#fac75b",
-        anc_text_color : "fff",
+        anc_text_color : "#fff",
 
         //child_color
         ch_element_color : "#FEE4C2",
@@ -178,7 +178,7 @@ SCUTMind.themes = {
 
         //ancestor_color
         anc_element_color : "#fac75b",
-        anc_text_color : "fff",
+        anc_text_color : "#fff",
 
         //child_color
         ch_element_color : "#FEE4C2",
@@ -215,7 +215,7 @@ SCUTMind.themes = {
 
         //ancestor_color
         anc_element_color : "#fac75b",
-        anc_text_color : "fff",
+        anc_text_color : "#fff",
 
         //child_color
         ch_element_color : "#FEE4C2",
@@ -252,7 +252,7 @@ SCUTMind.themes = {
 
         //ancestor_color
         anc_element_color : "#fac75b",
-        anc_text_color : "fff",
+        anc_text_color : "#fff",
 
         //child_color
         ch_element_color : "#FEE4C2",
@@ -289,7 +289,7 @@ SCUTMind.themes = {
 
         //ancestor_color
         anc_element_color : "#fac75b",
-        anc_text_color : "fff",
+        anc_text_color : "#fff",
 
         //child_color
         ch_element_color : "#FEE4C2",
@@ -319,9 +319,9 @@ SCUTMind.themes = {
         //decoration
         background_color : "#4CDBF4",
         line_color : "#667b99",
-        focus_border : "none",
-        common_border : "none",
-        focus_element_color : "#5B1156",
+        focus_border_color : "#C38707",
+        focus_border_width : 2,
+        common_border_width : 1,
 
         //ancestor_color
         anc_element_color : "#e8e88e",
@@ -332,12 +332,12 @@ SCUTMind.themes = {
         ch_text_color : "#000",
 
         //element_margin
-        father_child_margin : 20,
+        father_child_margin : 50,
         brother_margin : 15,
 
         //ancestor_size
-        anc_element_width : 80,
-        anc_element_height : 80,
+        anc_element_width : 90,
+        anc_element_height : 90,
 
         //child_size
         ch_element_width : 60,
@@ -369,9 +369,13 @@ SCUTMind.init = function (cxt,bgWidth,bgHeight,canvasW,canvasH) {
     this.backgroundCanvas = [bgWidth,bgHeight];
     this.backgroundCenter = [bgWidth/2,bgHeight/2];
     this.currCanvasScope = [(bgWidth - canvasW)/2,(bgHeight - canvasH)/2,(bgWidth + canvasW)/2,(bgHeight + canvasH)/2];
-    this.currPattern = this.patterns.default;
+    this.currPattern = this.patterns.tree;
     this.currTheme = this.themes.default;
     this.rootNode = new MindNode("main",null,this.backgroundCenter);
+
+    this.rootNode.text = "中心主题的";
+    this.rootNode.scope = this.initNodeScope("main",this.rootNode.position,this.rootNode.text);
+
     this.currNode = this.rootNode;
     this.draws(cxt, this.rootNode);
     return this;
@@ -454,7 +458,13 @@ SCUTMind.changePattern = function(pattern){
  @return this {SCUTMind}
  */
 SCUTMind.draw = function (cxt,node) {
-    console.log(node.scope + " " + node.area);
+    var need_newline = false;
+    var text_num = node.text.length;
+    if(text_num > 4){
+        need_newline = true;
+        var front_text = node.text.substr(0,4);
+        var last_text = node.text.substr(4);
+    }
     if(node.type == "main"){
         if(SCUTMind.currTheme == SCUTMind.themes.theme_circle){
             cxt.beginPath();
@@ -484,7 +494,15 @@ SCUTMind.draw = function (cxt,node) {
                 cxt.closePath();
             }
         }
-
+        cxt.font = "bold 19px BELLB";
+        cxt.fillStyle = SCUTMind.currTheme.anc_text_color;
+        if(need_newline) {
+            cxt.fillText(front_text, node.position[0]-40, node.position[1]);
+            cxt.fillText(last_text, node.position[0]-(text_num-4)*20/2, node.position[1] + 20);
+        }
+        else{
+            cxt.fillText(node.text, node.position[0]-text_num*20/2, node.position[1] + 20);
+        }
     }
     else{
         cxt.beginPath();
@@ -512,6 +530,16 @@ SCUTMind.draw = function (cxt,node) {
         }
         cxt.stroke();
         cxt.closePath();
+
+        cxt.font = "bold 12px BELLB";
+        cxt.fillStyle = SCUTMind.currTheme.ch_text_color;
+        if(need_newline) {
+            cxt.fillText(front_text, node.position[0]-24, node.position[1]);
+            cxt.fillText(last_text, node.position[0]-(text_num-4)*12/2, node.position[1] + 12);
+        }
+        else{
+            cxt.fillText(node.text, node.position[0]-text_num*12/2, node.position[1] + 12);
+        }
     }
 };
 
@@ -561,10 +589,18 @@ SCUTMind.initNodeScope = function (type,position,text) {
     if(type == "main"){
         node_width = SCUTMind.currTheme.anc_element_width;
         node_height = SCUTMind.currTheme.anc_element_height;
+        var text_num = text.length;
+        if(text_num > 4) {
+            node_height += 20;
+        }
     }
     else{
         node_width = SCUTMind.currTheme.ch_element_width;
         node_height = SCUTMind.currTheme.ch_element_height;
+        var text_num = text.length;
+        if(text_num > 4) {
+            node_height += 15;
+        }
     }
     nodeScope[0] = position[0] - node_width/2;
     nodeScope[1] = position[1] - node_height/2;
@@ -606,12 +642,7 @@ SCUTMind.initNodeArea = function (node){
     var area;
 
     if(SCUTMind.currPattern == SCUTMind.patterns.default){
-        try{
-        area = node.area[1];
-        }
-        catch (e){
-            console.log(e);
-        };
+        area = node.scope[3]-node.scope[1];
         if(node.children.length >= 1){
             area = node.children[0].area[1];
         }
@@ -621,7 +652,7 @@ SCUTMind.initNodeArea = function (node){
         node.area[1] = area;
     }
     else{
-        area = node.area[0];
+        area = node.scope[2]-node.scope[0];
         if(node.children.length >= 1){
             area = node.children[0].area[0];
         }
@@ -645,6 +676,19 @@ SCUTMind.updateArea = function(node){
     }
 };
 
+/*
+ @method updateAllArea.
+ @param node {MindNode} use the rootNode to init all the node.
+ @nothing to return.
+*/
+SCUTMind.updateAllArea = function(node){
+    if(node.children.length == 0){
+        this.updateArea(node);
+    }
+    for(var i=0; i<node.children.length; i++){
+        this.updateAllArea(node.children[i]);
+    }
+}
 
 /*
  @method getMousePos.
