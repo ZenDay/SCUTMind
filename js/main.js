@@ -5,7 +5,8 @@ $(document).ready(function() {
     var canvas = document.getElementById('canvas');
     var cxt = canvas.getContext('2d');
 	$('.sideBar-btn').click(function(event) {
-
+        document.getElementById("aside").style.cssText="left:0;";
+        document.getElementById("mask").style.cssText="left:0%;";
 	});
 	$('.sibling-btn').click(function(event) {
         if(SCUTMind.currNode.type == "main"){
@@ -67,6 +68,35 @@ $(document).ready(function() {
 		SCUTMind.draws(cxt, SCUTMind.rootNode);
 		return false;
 	});
+    $('.text-btn').click(function(){
+        var objDeck = document.getElementById("deck");
+        if(!objDeck)
+        {
+            objDeck = document.createElement("div");
+            objDeck.id="deck";
+            document.body.appendChild(objDeck);
+        }
+        objDeck.className="showDeck";
+        objDeck.style.filter="alpha(opacity=50)";
+        objDeck.style.opacity=40/100;
+        objDeck.style.MozOpacity=40/100;
+        //显示遮盖的层end
+        
+        //禁用select
+        hideOrShowSelect(true);
+        
+        //改变样式
+        document.getElementById('divBox').className='showDlg';
+        
+        //调整位置至居中
+        adjustLocation();
+    });
+    $('#OK').click(function(){
+
+        document.getElementById('divBox').className='hideDlg';
+        document.getElementById("deck").className="hideDeck";
+        hideOrShowSelect(false);
+    });
     $('.delete-btn').click(function(){
         if(SCUTMind.currNode.type == "main"){
             alert("You can't delete the rootNode!");
@@ -123,4 +153,49 @@ $(document).ready(function() {
         cxt.clearRect(0,0,canvas.width,canvas.height);
 		SCUTMind.draws(cxt, SCUTMind.rootNode);
     }, false);
+
+    $('#mask').click(function(){
+        document.getElementById("aside").style.cssText="left:-27%;";
+        document.getElementById("mask").style.cssText="left:-100%;";
+    });
+
+    $('#deck').click(function(){
+        document.getElementById('divBox').className='hideDlg';
+        document.getElementById("deck").className="hideDeck";
+        hideOrShowSelect(false);
+    });
 });
+
+function hideOrShowSelect(v)
+{
+    var allselect = document.getElementsByTagName("select");
+    for (var i=0; i<allselect.length; i++)
+    {
+    //allselect[i].style.visibility = (v==true)?"hidden":"visible";
+        allselect[i].disabled =(v==true)?"disabled":"";
+    }
+}
+    
+function adjustLocation()
+{
+    var obox=document.getElementById('divBox');
+    if (obox !=null && obox.style.display !="none")
+    {
+        var oLeft,oTop;
+            
+        if (window.innerWidth)
+        {
+            oLeft=(window.pageXOffset+window.innerWidth/2)*0.5+"px";
+            oTop=(window.pageYOffset+window.innerHeight/2)*0.65 +"px";
+        }
+        else
+        {
+            var dde=document.documentElement;
+            oLeft=dde.scrollLeft+(dde.offsetWidth-w)/2 +"px";
+            oTop=dde.scrollTop+(dde.offsetHeight-h)/2 +"px";
+        }
+            
+        obox.style.left=oLeft;
+        obox.style.top=oTop;
+    }
+}
