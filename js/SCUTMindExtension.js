@@ -369,7 +369,7 @@ SCUTMind.init = function (cxt,bgWidth,bgHeight,canvasW,canvasH) {
     this.backgroundCanvas = [bgWidth,bgHeight];
     this.backgroundCenter = [bgWidth/2,bgHeight/2];
     this.currCanvasScope = [(bgWidth - canvasW)/2,(bgHeight - canvasH)/2,(bgWidth + canvasW)/2,(bgHeight + canvasH)/2];
-    this.currPattern = this.patterns.tree;
+    this.currPattern = this.patterns.default;
     this.currTheme = this.themes.default;
     this.rootNode = new MindNode("main",null,this.backgroundCenter);
 
