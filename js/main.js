@@ -4,6 +4,28 @@
 $(document).ready(function() {
     var canvas = document.getElementById('canvas');
     var cxt = canvas.getContext('2d');
+    $('.pattern').click(function(){
+        var this_id = $(this).attr("id");
+        if(this_id == "right"){
+            SCUTMind.currPattern = SCUTMind.patterns.default;
+        }
+        else if(this_id == "tree"){
+            SCUTMind.currPattern = SCUTMind.patterns.tree;
+        }
+        else if(this_id == "organization"){
+            SCUTMind.currPattern = SCUTMind.patterns.organize;
+        }
+        SCUTMind.updateAllArea(SCUTMind.rootNode);
+        for(var i=0; i<10; i++){
+            if(SCUTMind.currPattern == SCUTMind.patterns.default)
+                SCUTMind.updatePosition(SCUTMind.rootNode, SCUTMind.rootNode.position[1] - SCUTMind.rootNode.area[1]/2);
+            else
+                SCUTMind.updatePosition(SCUTMind.rootNode, SCUTMind.rootNode.position[0] - SCUTMind.rootNode.area[0]/2);
+            SCUTMind.updateScope(SCUTMind.rootNode);
+        }
+        cxt.clearRect(0,0,canvas.width,canvas.height);
+        SCUTMind.draws(cxt, SCUTMind.rootNode);
+    });
 	$('.sideBar-btn').click(function(event) {
 
 	});
@@ -107,13 +129,14 @@ $(document).ready(function() {
             SCUTMind.currTheme = SCUTMind.themes.theme_soft;
         else if(this_id == "circle")
             SCUTMind.currTheme = SCUTMind.themes.theme_circle;
-        SCUTMind.updateScope(SCUTMind.rootNode);
         SCUTMind.updateAllArea(SCUTMind.rootNode);
-        if(SCUTMind.currPattern == SCUTMind.patterns.default)
-			SCUTMind.updatePosition(SCUTMind.rootNode, SCUTMind.rootNode.position[1] - SCUTMind.rootNode.area[1]/2);
-		else
-			SCUTMind.updatePosition(SCUTMind.rootNode, SCUTMind.rootNode.position[0] - SCUTMind.rootNode.area[0]/2);
-        SCUTMind.updateScope(SCUTMind.rootNode);
+        for(var i=0; i<10; i++){
+            if(SCUTMind.currPattern == SCUTMind.patterns.default)
+                SCUTMind.updatePosition(SCUTMind.rootNode, SCUTMind.rootNode.position[1] - SCUTMind.rootNode.area[1]/2);
+            else
+                SCUTMind.updatePosition(SCUTMind.rootNode, SCUTMind.rootNode.position[0] - SCUTMind.rootNode.area[0]/2);
+            SCUTMind.updateScope(SCUTMind.rootNode);
+        }
         cxt.clearRect(0,0,canvas.width,canvas.height);
         SCUTMind.draws(cxt, SCUTMind.rootNode);
     });

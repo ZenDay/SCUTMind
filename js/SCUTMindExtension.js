@@ -517,19 +517,6 @@ SCUTMind.draw = function (cxt,node) {
             cxt.stroke();
             cxt.closePath();
         }
-        cxt.strokeStyle = SCUTMind.currTheme.line_color;
-        cxt.lineWidth = "4";
-        cxt.beginPath();
-        if(SCUTMind.currPattern == SCUTMind.patterns.default) {
-            cxt.moveTo(node.parent.scope[2], node.parent.position[1]);
-            cxt.lineTo(node.scope[0], node.position[1]);
-        }
-        else{
-            cxt.moveTo(node.parent.position[0], node.parent.scope[3]);
-            cxt.lineTo(node.position[0], node.scope[1]);
-        }
-        cxt.stroke();
-        cxt.closePath();
 
         cxt.font = "bold 12px BELLB";
         cxt.fillStyle = SCUTMind.currTheme.ch_text_color;
@@ -541,6 +528,53 @@ SCUTMind.draw = function (cxt,node) {
             cxt.fillText(node.text, node.position[0]-text_num*12/2, node.position[1] + 12);
         }
     }
+    cxt.strokeStyle = SCUTMind.currTheme.line_color;
+    cxt.lineWidth = "2";
+    cxt.beginPath();
+    if(SCUTMind.currPattern == SCUTMind.patterns.default) {
+        if (node.children.length != 0) {
+            if (node.children.length == 1) {
+                cxt.moveTo(node.scope[2], node.position[1]);
+                cxt.lineTo(node.children[0].scope[0], node.children[0].position[1]);
+            }
+            else {
+                cxt.moveTo(node.scope[2], node.position[1]);
+                cxt.lineTo(node.scope[2] + SCUTMind.currTheme.father_child_margin / 2, node.position[1]);
+                cxt.moveTo(node.scope[2] + SCUTMind.currTheme.father_child_margin / 2, node.children[0].position[1]);
+                cxt.lineTo(node.scope[2] + SCUTMind.currTheme.father_child_margin / 2, node.children[node.children.length - 1].position[1]);
+                for (var i = 0; i < node.children.length; i++) {
+                    cxt.moveTo(node.scope[2] + SCUTMind.currTheme.father_child_margin / 2, node.children[i].position[1]);
+                    cxt.lineTo(node.children[i].scope[0], node.children[i].position[1]);
+                }
+            }
+        }
+    }
+    else if(SCUTMind.currPattern == SCUTMind.patterns.tree) {
+       for (var i = 0; i < node.children.length; i++) {
+           cxt.moveTo(node.position[0], node.scope[3]);
+           cxt.lineTo(node.children[i].position[0], node.children[i].scope[1]);
+       }
+    }
+    else{
+        if (node.children.length != 0) {
+            if (node.children.length == 1) {
+                cxt.moveTo(node.position[0], node.scope[3]);
+                cxt.lineTo(node.children[0].position[0], node.children[0].scope[1]);
+            }
+            else {
+                cxt.moveTo(node.position[0], node.scope[3]);
+                cxt.lineTo(node.position[0], node.scope[3] + SCUTMind.currTheme.father_child_margin / 2);
+                cxt.moveTo(node.children[0].position[0], node.scope[3] + SCUTMind.currTheme.father_child_margin / 2);
+                cxt.lineTo(node.children[node.children.length-1].position[0], node.scope[3] + SCUTMind.currTheme.father_child_margin / 2);
+                for (var i = 0; i < node.children.length; i++) {
+                    cxt.moveTo(node.children[i].position[0], node.scope[3] + SCUTMind.currTheme.father_child_margin / 2);
+                    cxt.lineTo(node.children[i].position[0], node.children[i].scope[1]);
+                }
+            }
+        }
+    }
+    cxt.stroke();
+    cxt.closePath();
 };
 
 /*
