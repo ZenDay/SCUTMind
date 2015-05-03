@@ -9,7 +9,7 @@ $(document).ready(function() {
 	});
 	$('.sibling-btn').click(function(event) {
         if(SCUTMind.currNode.type == "main"){
-            alert("You can add a sibling element of the rootNode");
+            alert("You can't add a sibling element of the rootNode");
             return false;
         }
         var position = [];
@@ -82,6 +82,31 @@ $(document).ready(function() {
 		cxt.clearRect(0,0,canvas.width,canvas.height);
 		SCUTMind.draws(cxt, SCUTMind.rootNode);
         return false;
+    });
+    $('.swiper-slide a').click(function(){
+        //alert($(this).attr("id"));
+        var this_id = $(this).attr("id");
+        if(this_id == "gray")
+            SCUTMind.currTheme = SCUTMind.themes.default;
+        else if(this_id == "green")
+            SCUTMind.currTheme = SCUTMind.themes.theme_green;
+        else if(this_id == "pink")
+            SCUTMind.currTheme = SCUTMind.themes.theme_pink;
+        else if(this_id == "purple")
+            SCUTMind.currTheme = SCUTMind.themes.theme_purple;
+        else if(this_id == "blue")
+            SCUTMind.currTheme = SCUTMind.themes.theme_blue;
+        else if(this_id == "yellow")
+            SCUTMind.currTheme = SCUTMind.themes.theme_yellow;
+        else if(this_id == "classic")
+            SCUTMind.currTheme = SCUTMind.themes.theme_classic;
+        else if(this_id == "soft")
+            SCUTMind.currTheme = SCUTMind.themes.theme_soft;
+        else if(this_id == "circle")
+            SCUTMind.currTheme = SCUTMind.themes.theme_circle;
+        SCUTMind.updateScope(SCUTMind.rootNode);
+        cxt.clearRect(0,0,canvas.width,canvas.height);
+        SCUTMind.draws(cxt, SCUTMind.rootNode);
     });
     canvas.addEventListener("click", function (event) {
         var mousePos = SCUTMind.getMousePos(canvas, event);

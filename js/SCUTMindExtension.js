@@ -25,7 +25,7 @@ SCUTMind.themes = {
         line_color : "#8e8e8e",
         focus_border_color : "rgba(0,0,0,.5)",
         common_border_color : "#ccc",
-        focus_border_width : 2,
+        focus_border_width : 1,
         common_border_width : 1,
 
         //ancestor_color
@@ -37,12 +37,160 @@ SCUTMind.themes = {
         ch_text_color : "#000",
 
         //element_margin
-        father_child_margin : 80,
+        father_child_margin : 60,
         brother_margin : 15,
 
         //ancestor_size
         anc_element_width : 80,
         anc_element_height : 45,
+
+        //child_size
+        ch_element_width : 60,
+        ch_element_height : 25,
+
+        //else
+        background_img : "none"
+    },
+    theme_green : {
+        //shape
+        ancestor_shape : "rectangle",
+        child_shape : "rectangle",
+        line_shape : "straight",
+
+        //decoration
+        background_color : "#fff",
+        line_color : "#8e8e8e",
+        focus_border_color : "#09816A",
+        common_border_color : "#00c5ad",
+        focus_border_width : 1,
+        common_border_width : 1,
+
+        //ancestor_color
+        anc_element_color : "#00c5ad",
+        anc_text_color : "fff",
+
+        //child_color
+        ch_element_color : "#A6FBD8",
+        ch_text_color : "#000",
+
+        //element_margin
+        father_child_margin : 60,
+        brother_margin : 15,
+
+        //ancestor_size
+        anc_element_width : 80,
+        anc_element_height : 45,
+
+        //child_size
+        ch_element_width : 60,
+        ch_element_height : 25,
+
+        //else
+        background_img : "none"
+    },
+    theme_pink : {
+        //shape
+        ancestor_shape : "rectangle",
+        child_shape : "rectangle",
+        line_shape : "straight",
+
+        //decoration
+        background_color : "#fff",
+        line_color : "#8e8e8e",
+        focus_border_color : "#C38707",
+        common_border_color : "#fac75b",
+        focus_border_width : 2,
+        common_border_width : 1,
+
+        //ancestor_color
+        anc_element_color : "#fac75b",
+        anc_text_color : "fff",
+
+        //child_color
+        ch_element_color : "#FEE4C2",
+        ch_text_color : "#000",
+
+        //element_margin
+        father_child_margin : 20,
+        brother_margin : 15,
+
+        //ancestor_size
+        anc_element_width : 80,
+        anc_element_height : 35,
+
+        //child_size
+        ch_element_width : 60,
+        ch_element_height : 25,
+
+        //else
+        background_img : "none"
+    },
+    theme_purple : {
+        //shape
+        ancestor_shape : "rectangle",
+        child_shape : "rectangle",
+        line_shape : "straight",
+
+        //decoration
+        background_color : "#fff",
+        line_color : "#8e8e8e",
+        focus_border_color : "#C38707",
+        common_border_color : "#fac75b",
+        focus_border_width : 2,
+        common_border_width : 1,
+
+        //ancestor_color
+        anc_element_color : "#fac75b",
+        anc_text_color : "fff",
+
+        //child_color
+        ch_element_color : "#FEE4C2",
+        ch_text_color : "#000",
+
+        //element_margin
+        father_child_margin : 20,
+        brother_margin : 15,
+
+        //ancestor_size
+        anc_element_width : 80,
+        anc_element_height : 35,
+
+        //child_size
+        ch_element_width : 60,
+        ch_element_height : 25,
+
+        //else
+        background_img : "none"
+    },
+    theme_blue : {
+        //shape
+        ancestor_shape : "rectangle",
+        child_shape : "rectangle",
+        line_shape : "straight",
+
+        //decoration
+        background_color : "#fff",
+        line_color : "#8e8e8e",
+        focus_border_color : "#C38707",
+        common_border_color : "#fac75b",
+        focus_border_width : 2,
+        common_border_width : 1,
+
+        //ancestor_color
+        anc_element_color : "#fac75b",
+        anc_text_color : "fff",
+
+        //child_color
+        ch_element_color : "#FEE4C2",
+        ch_text_color : "#000",
+
+        //element_margin
+        father_child_margin : 20,
+        brother_margin : 15,
+
+        //ancestor_size
+        anc_element_width : 80,
+        anc_element_height : 35,
 
         //child_size
         ch_element_width : 60,
@@ -88,7 +236,7 @@ SCUTMind.themes = {
         //else
         background_img : "none"
     },
-    theme_green : {
+    theme_classic : {
         //shape
         ancestor_shape : "rectangle",
         child_shape : "rectangle",
@@ -97,17 +245,17 @@ SCUTMind.themes = {
         //decoration
         background_color : "#fff",
         line_color : "#8e8e8e",
-        focus_border_color : "#09816A",
-        common_border_color : "#00c5ad",
+        focus_border_color : "#C38707",
+        common_border_color : "#fac75b",
         focus_border_width : 2,
         common_border_width : 1,
 
         //ancestor_color
-        anc_element_color : "#00c5ad",
+        anc_element_color : "#fac75b",
         anc_text_color : "fff",
 
         //child_color
-        ch_element_color : "#A6FBD8",
+        ch_element_color : "#FEE4C2",
         ch_text_color : "#000",
 
         //element_margin
@@ -120,7 +268,44 @@ SCUTMind.themes = {
 
         //child_size
         ch_element_width : 60,
-        ch_element_height : 27,
+        ch_element_height : 25,
+
+        //else
+        background_img : "none"
+    },
+    theme_soft : {
+        //shape
+        ancestor_shape : "rectangle",
+        child_shape : "rectangle",
+        line_shape : "straight",
+
+        //decoration
+        background_color : "#fff",
+        line_color : "#8e8e8e",
+        focus_border_color : "#C38707",
+        common_border_color : "#fac75b",
+        focus_border_width : 2,
+        common_border_width : 1,
+
+        //ancestor_color
+        anc_element_color : "#fac75b",
+        anc_text_color : "fff",
+
+        //child_color
+        ch_element_color : "#FEE4C2",
+        ch_text_color : "#000",
+
+        //element_margin
+        father_child_margin : 20,
+        brother_margin : 15,
+
+        //ancestor_size
+        anc_element_width : 80,
+        anc_element_height : 35,
+
+        //child_size
+        ch_element_width : 60,
+        ch_element_height : 25,
 
         //else
         background_img : "none"
@@ -241,22 +426,6 @@ SCUTMind.moveCanvas = function (changeX,changeY) {
     return this;
 };
 
-/*
- @method changeTheme
- @param theme {string} the new theme.
- */
-SCUTMind.changeTheme = function (theme) {
-    this.currTheme = theme;
-    this.updateArea(this.rootNode);
-    if(pattern == this.patterns.default){
-        this.updatePosition(SCUTMind.rootNode, SCUTMind.rootNode.position[1] - SCUTMind.rootNode.area[1]/2);
-    }
-    else{
-        SCUTMind.updatePosition(SCUTMind.rootNode, SCUTMind.rootNode.position[0] - SCUTMind.rootNode.area[0]/2);
-    }
-    this.updateScope(this.rootNode);
-    this.draws(cxt, this.rootNode);
-};
 
 /*
  @method changePattern.
@@ -274,7 +443,7 @@ SCUTMind.changePattern = function(pattern){
     }
     this.updateScope(this.rootNode);
     this.draws(cxt, this.rootNode);
-}
+};
 
 
 //this is some function about front end achievement
@@ -410,11 +579,11 @@ SCUTMind.initNodeScope = function (type,position,text) {
  @nothing to return.
 */
 SCUTMind.updateScope = function(node){
-    node.scope = this.initNodeScope(node.type, node.position, node.text)
+    node.scope = this.initNodeScope(node.type, node.position, node.text);
     for(var i=0; i<node.children.length; i++){
         this.updateScope(node.children[i]);
     }
-}
+};
 
 /*
  @method initNewNodeArea
@@ -426,7 +595,7 @@ SCUTMind.initNewNodeArea = function(node){
     area[0] = node.scope[2] - node.scope[0];
     area[1] = node.scope[3] - node.scope[1];
     return area;
-}
+};
 
 /*
  @method initNodeArea
@@ -474,7 +643,7 @@ SCUTMind.updateArea = function(node){
     if(node.parent != null){
         this.updateArea(node.parent);
     }
-}
+};
 
 
 /*
@@ -505,4 +674,4 @@ SCUTMind.updateCurrNode = function(node, mousePos){
     for(var i=0; i<node.children.length; i++) {
         this.updateCurrNode(node.children[i],mousePos);
     }
-}
+};
