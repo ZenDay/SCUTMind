@@ -2,86 +2,78 @@
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1">
 	<link rel="stylesheet" type="text/css" href="css/main.css">
-	<script type="text/javascript" src="jquery/jquery-1.11.2.min.js"></script>
-    <script type="text/javascript" src="js/MindNode.js"></script>
-    <script type="text/javascript" src="js/SCUTMindExtension.js"></script>
-	<title>SCUTMind</title>
+	<link rel="stylesheet" type="text/css" href="css/swiper.min.css">
+	<title>SCUTmind</title>
 </head>
 <body>
-	<canvas id="canvas">您的浏览器不支持canvas，请更换浏览器后尝试</canvas>
+	<canvas id ="canvas" width="500" height="800">您的浏览器不支持canvas，请更换浏览器后尝试</canvas>
 	<div id="toolBar" class="toolBar">
-		<div class="fixed-l">
-			<a href="#" class="sideBar-btn"><img src="icons/menu4.png" height="30" width="30"></a>
-		</div>
-		<div class="move-mid">
-			<a href="#" class="sibling-btn"><img src="icons/sibling4.png" height="30" width="30"><!--<br><span>sibling</span>--></a>
-			<a href="#" class="child-btn"><img src="icons/child4.png" height="30" width="30"><!--<br><span>child</span>--></a>
-			<a href="#" class="shape-btn"><img src="icons/theme4.png" height="30" width="30"><!--<br><span>theme</span>--></a>
-			<a href="#" class="fontcolor-btn"><img src="icons/fontcolor4.png" height="30" width="30"><!--<br><span>fontcolor</span>--></a>
-			<a href="#" class="bgcolor-btn"><img src="icons/bgcolor4.png" height="30" width="30"><!--<br><span>bg-color</span>--></a>
- 			<a href="#" class="comment-btn"><img src="icons/comment4.png" height="30" width="30"><!--<br><span>comment</span>--></a>
-		</div>
-		<div class="fixed-r">
-			<a href="#" class="delete-btn"><img src="icons/delete4.png" height="30" width="30"><!--<br><span>delete</span>--></a>
-		</div>
+			<a href="#" class="sideBar-btn"><img src="icons/menu.png" height="75%"></a>
+			<a href="#" class="sibling-btn"><img src="icons/sibling3.png" height="75%"><!--<br><span>sibling</span>--></a>
+			<a href="#" class="child-btn"><img src="icons/child3.png" height="75%"><!--<br><span>child</span>--></a>
+			<a href="#" class="text"><img src="icons/text3.png" height="75%"></a>
+			<!--<a href="#" class="shape-btn"><img src="icons/theme4.png" height="75%"><br><span>theme</span></a>-->
+			<a href="#" class="delete-btn"><img src="icons/delete3.png" height="75%"><!--<br><span>delete</span>--></a>
 	</div>
 	<div class="clear"></div>
-	<div id="selectionBar" class="selectionBar">
-		<div id="color" class="show">
-			<a href="#"><img src="color/red.png" width="45%"></a>
-			<a href="#"><img src="color/yellow.png" width="45%"></a>
-			<a href="#"><img src="color/green.png" width="45%"></a>
-			<a href="#"><img src="color/lightblue.png" width="45%"></a>
-			<a href="#"><img src="color/skyblue.png" width="45%"></a>
-			<a href="#"><img src="color/gray.png" width="45%"></a>
-			<a href="#"><img src="color/black.png" width="45%"></a>
+	<div id="selectionBar" class="swiper-container">
+		<div id="color" class="swiper-wrapper">
+			<div class="swiper-slide"><a id="gray" href="#">低调灰</a></div>
+			<div class="swiper-slide"><a id="green" href="#">文艺绿</a></div>
+         	<div class="swiper-slide"><a id="pink" href="#">脑残粉</a></div>
+			<div class="swiper-slide"><a id="purple" href="#">高贵紫</a></div>
+			<div class="swiper-slide"><a id="blue" href="#">浪漫蓝</a></div>
+			<div class="swiper-slide"><a id="yellow" href="#">泥巴黄</a></div>
+			<div class="swiper-slide"><a id="classic" href="#">经典Mind</a></div>
+            <div class="swiper-slide"><a id="soft" href="#">温柔冷光</a></div>
+            <div class="swiper-slide"><a id="circle" href="#">圆圈主题</a></div>
 		</div>
-		<div id="theme" class="hide">
-			<a href="#">主题一</a>
-			<a href="#">主题二</a>
-			<a href="#">主题三</a>
-		</div>
+		<div class="swiper-pagination"></div>
 	</div>
+	<script src="js/jquery-1.11.2.min.js"></script>
+	<script src="js/swiper.min.js"></script>
 	<script type="text/javascript">
 	window.onload = function(){
-        var bodyWidth = $("#toolBar").width();
-        var bodyHeight = $("body").height();
-        var toolBarHeight = $("#toolBar").height();
-        var selectionBarHeight = $(".selectionBar").height();
-        $("#canvas").width(bodyWidth-10);
-        $("#canvas").height(bodyHeight-toolBarHeight-selectionBarHeight-10);
-        //调整工具栏图片margin，使之垂直居中
-        var toolBar_tag_a = document.getElementById("toolBar").getElementsByTagName("a");
-        var toolBar_img = document.getElementById("toolBar").getElementsByTagName("img");
-        var aHeight;
-        var imgHeight;
-        var padTop2;
-        for(var j=0; j<toolBar_tag_a.length; j++){
-            aHeight = toolBar_tag_a[j].offsetHeight;
-            imgHeight = toolBar_img[j].offsetHeight;
-            padTop2 = (aHeight - imgHeight)*0.4;
-            toolBar_img[j].style.marginTop = padTop2+"px";
-        }
-        //调整颜色图片margin，使之垂直居中
-        var colorBar_tag_a = document.getElementById("color").getElementsByTagName("a");
-        var colorBar_img = document.getElementById("color").getElementsByTagName("img");
-        var colorBar_tag_a_height;
-        var colorBar_img_height;
-        for(var i=0; i<colorBar_tag_a.length; i++){
-            colorBar_tag_a_height = colorBar_tag_a[i].offsetHeight;
-            colorBar_img_height = colorBar_img[i].offsetHeight;
-            var margin_top = (colorBar_tag_a_height - colorBar_img_height)*0.4;
-            colorBar_img[i].style.marginTop = margin_top+"px";
-        }
-        var canvas = document.getElementById('canvas');
-	    var cxt = canvas.getContext('2d');
-        var rect = canvas.getBoundingClientRect();
-        canvas.width =  (rect.right-rect.left)*1.5;
-        canvas.height = (rect.bottom-rect.top)*1.5;
-	    SCUTMind.init(cxt, canvas.width, canvas.height, 2000, 2000);
+	//调整canvas的宽高
+	var bodyWidth = $("#toolBar").width();
+	var bodyHeight = $("body").height();
+	var toolBarHeight = $("#toolBar").height();
+	var selectionBarHeight = $("#selectionBar").height();
+	$("#canvas").width(bodyWidth);
+	$("#canvas").height(bodyHeight-toolBarHeight-selectionBarHeight-1);
+	$("#canvas").attr("height","300");
+    //调整工具栏图片margin，使之垂直居中
+	var toolBar_tag_a = document.getElementById("toolBar").getElementsByTagName("a");
+	var toolBar_img = document.getElementById("toolBar").getElementsByTagName("img");
+	var aHeight;
+	var imgHeight;
+	var padTop2;
+	for(var j = 0; j < toolBar_tag_a.length; j++){
+		aHeight = toolBar_tag_a[j].offsetHeight;
+        imgHeight = toolBar_img[j].offsetHeight;
+        padTop2 = (aHeight-imgHeight)*0.8;
+        toolBar_img[j].style.marginTop = padTop2+"px";
     }
+    //调整主题margin，使之垂直居中 & 调整主题文字lineheight，使文字垂直居中
+    var colorBar_tag_a = document.getElementById("color").getElementsByTagName("a");
+    var colorBar = document.getElementById("color");
+    var colorBar_tag_a_height;
+    var colorBar_height;
+    colorBar_height = colorBar.offsetHeight;
+    for(var i = 0; i < colorBar_tag_a.length; i++){
+        colorBar_tag_a_height = colorBar_tag_a[i].offsetHeight;
+        var margintop = (colorBar_height - colorBar_tag_a_height) * 0.5;
+        colorBar_tag_a[i].style.marginTop = margintop + "px";
+        colorBar_tag_a[i].style.lineHeight  = colorBar_tag_a_height + "px";
+        colorBar_tag_a[i].style.height = colorBar_tag_a_height + "px";
+    }
+    var swiper = new Swiper('.swiper-container', {
+        slidesPerView: 3,
+        freeMode: true,
+    });
+};
 	</script>
-    <script type="text/javascript" src="js/main.js"></script>
 </body>
 </html>

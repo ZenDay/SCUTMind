@@ -1,18 +1,16 @@
 html,body,div,ul,li,a,span,p,img,canvas{
 	padding: 0;
 	margin: 0;
-	font-family: "Helvetica";
+	font-family: "Microsoft Yahei";
+	font-size: 100%;
 }
 
 body,html{
 	width: 100%;
 	height: 100%;
-	overflow-x: hidden;
-	overflow-y: hidden; 
 }
 
 a{
-	color: #33475f;
 	text-decoration: none;
 }
 
@@ -21,75 +19,76 @@ a{
 }
 
 #canvas{
-   border: 5px solid #8e8e8e;
+   /*border-width: 5px;
+   border-color : #2C3A72; 
+   border-style: ridge ridge none ridge;*/
+   display: block;
+   /*background-color: #DCE7E6;*/
 }
 
-.move-mid a{
-	width: 45px;
-	float: left;
-}
 
-.fixed-l,.fixed-r{
-	float: left;
-	width: 15%;
-	height: 100%;
-}
-
-.fixed-l a,.fixed-r a,.move-mid a{
-	font-size: 12px;
-    font-weight: 500;
+.toolBar a{
 	display: block;
 	height: 100%;
     text-align: center;
+    width: 20%;
+    float: left;
 }
 
-.move-mid{
-	overflow: hidden;/*超出视图的标签暂时把它隐藏了~*/
-	height: 100%;
-	width: 70%;
-	float: left;
-}
-
-.move-mid img{
-    /*padding: 7px 3px;
-    -webkit-box-shadow:0 0 10px #33475f;  
-    -moz-box-shadow:0 0 10px #33475f;  
-    box-shadow:0 0 10px #33475f; */
-}
-
-.selectionBar,.toolBar{
+#selectionBar,.toolBar{
 	width: 100%;
+	background-color: #E0DFDF;
+	height: 8%;
 }
 
-.toolBar{
-	height: 35px;
-	background :#505453;
-}
-
-.selectionBar{
-    height: 35px;
-    background-color: #EAE6E6;
-}
-
-#color,#theme{
+#color{
     height: 100%; 
 }
 
 #color a{
 	display: block;
-	width: 14%;
-	float: left;
-	height: 100%;
+	height: 55%;
+	text-align: center;
+	border-radius: 5px;
+	-webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    color: #fff;
+    width : 60%;
+    margin-left: 20%;
 }
 
-#color img{
-	margin-left: 32%;/*No modify please!*/
+#gray{
+    background-color: #8e8e8e;
 }
 
-.hide{
-	display: none;
+#yellow{
+    background-color: #Fac75b;
 }
 
-.show{
-	display: block;
+#green{
+    background-color: #00c5ad;
+}
+
+#blue{
+	background-color: #3bbce0;
+}
+
+#pink{
+	background-color: #e75d66;
+}
+
+#purple{
+	background-color: #EC7CFD;
+}
+
+#classic{
+	background-color: #344370;
+}
+
+#circle{
+	background-color: #2c2f2e;
+}
+
+#soft{
+	background-color: #0f6562;
 }
