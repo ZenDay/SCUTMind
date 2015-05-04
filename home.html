@@ -46,33 +46,33 @@
     <div id="deck"></div>
 
     <aside id="aside">
-        <h2>Menu</h2>
+        <h2><img class="menu" src="pattern/menu.png"></h2>
         <div id="patterns">
             <div>
-                <a href="#" class="pattern" id="right"><img class="right" src="pattern/right2.png"></a>
+                <a href="#" class="pattern" id="right"><img class="right" src="pattern/right.png"></a>
             </div>
             <div>
-                <a href="#" class="pattern" id="organization"><img class="organization" src="pattern/organization2.png" ></a>
+                <a href="#" class="pattern" id="organization"><img class="organization" src="pattern/organization.png" ></a>
             </div>
             <div>
-                <a href="#" class="pattern" id="tree"><img class="tree" src="pattern/tree2.png"></a>
+                <a href="#" class="pattern" id="tree"><img class="tree" src="pattern/tree.png"></a>
             </div>
             <!--<div>-->
-                <!--<a href="#" class="pattern" id="save"><img class="save" src="pattern/save2.png"></a>-->
+                <!--<a href="#" class="pattern" id="save"><img class="save" src="pattern/save.png"></a>-->
             <!--</div>-->
         </div>
     </aside>
 
     <div id="divBox" class="hideDlg" style="" >
-        <table style="height:100%; width: 100%;" id="table1">
-            <td id="head" colspan="3">Text</td>
-            <td id="b">
-                <input id="textbox" name="TextBox1" type="text" id="TextBox1" maxlength="8" value="输入少于8的文字" onfocus="javascript:if(this.value=='输入少于8的文字')this.value='';" onblur="javascript:if(this.value=='')this.value='输入少于8的文字';" onkeyup="value=value.replace(/[^\u4E00-\u9FA5]/g,'')" onpaste="value=value.replace(/[^\u4E00-\u9FA5]/g,'')" oncontextmenu = "value=value.replace(/[^\u4E00-\u9FA5]/g,'')"  />
-            </td>
-            <td id="t">
-                <a href="#" id="OK" class="button"><img src="pattern/ok.png"></a>
-            </td>
-        </table>
+        <div style="height:100%; width: 100%;" id="table1">
+            <div id="head"><img class="text" src="pattern/text.png"></div>
+            <div id="b">
+                <input id="textbox" name="TextBox1" type="text" maxlength="8"  onfocus="javascript:if(this.value=='输入少于8的文字')this.value='';" onblur="javascript:if(this.value=='')this.value='输入少于8的文字';" onkeyup="value=value.replace(/[^\u4E00-\u9FA5]/g,'')" onpaste="value=value.replace(/[^\u4E00-\u9FA5]/g,'')" oncontextmenu = "value=value.replace(/[^\u4E00-\u9FA5]/g,'')"  />
+            </div>
+            <div id="t">
+               <a href="#" id="OK" class="button"><img class="ok" src="pattern/ok.png"></a> 
+            </div>
+        </div>
     </div>
 
 	<script src="js/swiper.min.js"></script>
