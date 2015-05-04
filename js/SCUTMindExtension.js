@@ -21,7 +21,7 @@ SCUTMind.themes = {
         line_shape : "straight",
 
         //decoration
-        background_color : "#fff",
+        background_color : "#0c9",
         line_color : "#8e8e8e",
         focus_border_color : "rgba(0,0,0,.2)",
         common_border_color : "#ccc",
@@ -384,6 +384,13 @@ SCUTMind.init = function (cxt,bgWidth,bgHeight,canvasW,canvasH) {
  @return this {SCUTMind}
  */
 SCUTMind.draws = function (cxt,node) {
+    if(node.type == "main"){
+        cxt.beginPath();
+        cxt.fillStyle = SCUTMind.currTheme.background_color;
+        cxt.rect(0, 0, canvas.width, canvas.height);
+        cxt.fill();
+        cxt.closePath();
+    }
     this.draw(cxt,node);
     for (var i = 0; i<node.children.length; i++) {
         this.draws(cxt, node.children[i]);
