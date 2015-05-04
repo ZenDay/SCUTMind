@@ -21,32 +21,32 @@ SCUTMind.themes = {
         line_shape : "straight",
 
         //decoration
-        background_color : "#0c9",
-        line_color : "#8e8e8e",
-        focus_border_color : "rgba(0,0,0,.2)",
-        common_border_color : "#ccc",
+        background_color : "#fff",
+        line_color : "rgba(226,226,226,0.8)",
+        focus_border_color : "#000",
+        common_border_color : "#8e8e8e",
         focus_border_width : 2,
-        common_border_width : 2,
+        common_border_width : 1,
 
         //ancestor_color
         anc_element_color : "#ccc",
         anc_text_color : "#fff",
 
         //child_color
-        ch_element_color : "#E0DFE0",
-        ch_text_color : "#000",
+        ch_element_color : "#EDEBEB",
+        ch_text_color : "#787373",
 
         //element_margin
         father_child_margin : 60,
-        brother_margin : 15,
+        brother_margin : 25,
 
         //ancestor_size
-        anc_element_width : 80,
+        anc_element_width : 120,
         anc_element_height : 45,
 
         //child_size
-        ch_element_width : 60,
-        ch_element_height : 25,
+        ch_element_width : 80,
+        ch_element_height : 30,
 
         //else
         background_img : "none"
@@ -60,9 +60,9 @@ SCUTMind.themes = {
         //decoration
         background_color : "#fff",
         line_color : "#8e8e8e",
-        focus_border_color : "#09816A",
+        focus_border_color : "#000",
         common_border_color : "#00c5ad",
-        focus_border_width : 1,
+        focus_border_width : 2,
         common_border_width : 1,
 
         //ancestor_color
@@ -70,94 +70,93 @@ SCUTMind.themes = {
         anc_text_color : "#fff",
 
         //child_color
-        ch_element_color : "#A6FBD8",
-        ch_text_color : "#000",
+        ch_element_color : "#64FFA3",
+        ch_text_color : "rgba(0,0,0,0.5)",
 
         //element_margin
         father_child_margin : 60,
-        brother_margin : 15,
+        brother_margin : 25,
 
         //ancestor_size
-        anc_element_width : 80,
+        anc_element_width : 120,
         anc_element_height : 45,
 
         //child_size
-        ch_element_width : 60,
-        ch_element_height : 25,
+        ch_element_width : 80,
+        ch_element_height : 30,
 
         //else
         background_img : "none"
     },
     theme_pink : {
-        //shape
-        ancestor_shape : "rectangle",
-        child_shape : "rectangle",
-        line_shape : "straight",
+       //decoration
+       background_color : "#fff",
+       line_color : "#FEC3C3",
+       focus_border_color : "#000",
+       common_border_color : "#e75d66",
+       focus_border_width : 2,
+       common_border_width : 1,
 
-        //decoration
-        background_color : "#fff",
-        line_color : "#8e8e8e",
-        focus_border_color : "#C38707",
-        common_border_color : "#fac75b",
-        focus_border_width : 2,
-        common_border_width : 1,
+       //ancestor_color
+       anc_element_color : "#e75d66",
+       anc_text_color : "#fff",
 
-        //ancestor_color
-        anc_element_color : "#fac75b",
-        anc_text_color : "#fff",
+       //child_color
+       ch_element_color : "#FDDFDF",
+       ch_text_color : "#3F3434",
 
-        //child_color
-        ch_element_color : "#FEE4C2",
-        ch_text_color : "#000",
+       //grandchild_color 
+       gra_element_color : "#fff",
+       gra_text_color : "#000",
 
         //element_margin
-        father_child_margin : 20,
-        brother_margin : 15,
+        father_child_margin : 60,
+        brother_margin : 25,
 
         //ancestor_size
-        anc_element_width : 80,
-        anc_element_height : 35,
+        anc_element_width : 120,
+        anc_element_height : 45,
 
         //child_size
-        ch_element_width : 60,
-        ch_element_height : 25,
+        ch_element_width : 80,
+        ch_element_height : 30,
 
         //else
         background_img : "none"
     },
     theme_purple : {
         //shape
-        ancestor_shape : "rectangle",
+        ancestor_shape : "circle",
         child_shape : "rectangle",
         line_shape : "straight",
 
         //decoration
         background_color : "#fff",
-        line_color : "#8e8e8e",
-        focus_border_color : "#C38707",
-        common_border_color : "#fac75b",
+        line_color : "#ccc",
+        focus_border_color : "#39105E",
+        common_border_color : "#caaddc",
         focus_border_width : 2,
         common_border_width : 1,
 
         //ancestor_color
-        anc_element_color : "#fac75b",
+        anc_element_color : "#CAADDC",
         anc_text_color : "#fff",
 
         //child_color
-        ch_element_color : "#FEE4C2",
-        ch_text_color : "#000",
+        ch_element_color : "#fff",
+        ch_text_color : "#9222dd",
 
         //element_margin
-        father_child_margin : 20,
-        brother_margin : 15,
+        father_child_margin : 75,
+        brother_margin : 30,
 
         //ancestor_size
-        anc_element_width : 80,
-        anc_element_height : 35,
+        anc_element_width : 125,
+        anc_element_height : 30,
 
         //child_size
-        ch_element_width : 60,
-        ch_element_height : 25,
+        ch_element_width : 80,
+        ch_element_height : 20,
 
         //else
         background_img : "none"
@@ -170,31 +169,31 @@ SCUTMind.themes = {
 
         //decoration
         background_color : "#fff",
-        line_color : "#8e8e8e",
-        focus_border_color : "#C38707",
-        common_border_color : "#fac75b",
+        line_color : "#ccc",
+        focus_border_color : "#1129BC",
+        common_border_color : "#B3E7FF",
         focus_border_width : 2,
         common_border_width : 1,
 
         //ancestor_color
-        anc_element_color : "#fac75b",
-        anc_text_color : "#fff",
+        anc_element_color : "#B3E7FF",
+        anc_text_color : "#1DA934",
 
         //child_color
-        ch_element_color : "#FEE4C2",
-        ch_text_color : "#000",
+        ch_element_color : "#fff",
+        ch_text_color : "#3bbce0",
 
         //element_margin
-        father_child_margin : 20,
-        brother_margin : 15,
+        father_child_margin : 75,
+        brother_margin : 30,
 
         //ancestor_size
-        anc_element_width : 80,
-        anc_element_height : 35,
+        anc_element_width : 125,
+        anc_element_height : 30,
 
         //child_size
-        ch_element_width : 60,
-        ch_element_height : 25,
+        ch_element_width : 80,
+        ch_element_height : 20,
 
         //else
         background_img : "none"
@@ -207,141 +206,136 @@ SCUTMind.themes = {
 
         //decoration
         background_color : "#fff",
-        line_color : "#8e8e8e",
-        focus_border_color : "#C38707",
-        common_border_color : "#fac75b",
+        line_color : "rgba(204,204,204,0.6)",
+        focus_border_color : "#E99A16",
+        common_border_color : "#fee4c2",
         focus_border_width : 2,
         common_border_width : 1,
 
         //ancestor_color
-        anc_element_color : "#fac75b",
-        anc_text_color : "#fff",
+        anc_element_color : "#fff",
+        anc_text_color : "#FC8383",
 
         //child_color
-        ch_element_color : "#FEE4C2",
-        ch_text_color : "#000",
+        ch_element_color : "#fff",
+        ch_text_color : "#fac75b",
 
         //element_margin
-        father_child_margin : 20,
-        brother_margin : 15,
+        father_child_margin : 75,
+        brother_margin : 30,
 
         //ancestor_size
-        anc_element_width : 80,
-        anc_element_height : 35,
+        anc_element_width : 125,
+        anc_element_height : 30,
 
         //child_size
-        ch_element_width : 60,
-        ch_element_height : 25,
-
-        //else
-        background_img : "none"
-    },
-    theme_classic : {
-        //shape
-        ancestor_shape : "rectangle",
-        child_shape : "rectangle",
-        line_shape : "straight",
-
-        //decoration
-        background_color : "#fff",
-        line_color : "#8e8e8e",
-        focus_border_color : "#C38707",
-        common_border_color : "#fac75b",
-        focus_border_width : 2,
-        common_border_width : 1,
-
-        //ancestor_color
-        anc_element_color : "#fac75b",
-        anc_text_color : "#fff",
-
-        //child_color
-        ch_element_color : "#FEE4C2",
-        ch_text_color : "#000",
-
-        //element_margin
-        father_child_margin : 20,
-        brother_margin : 15,
-
-        //ancestor_size
-        anc_element_width : 80,
-        anc_element_height : 35,
-
-        //child_size
-        ch_element_width : 60,
-        ch_element_height : 25,
+        ch_element_width : 80,
+        ch_element_height : 20,
 
         //else
         background_img : "none"
     },
     theme_soft : {
         //shape
-        ancestor_shape : "rectangle",
+        ancestor_shape : "circle",
         child_shape : "rectangle",
         line_shape : "straight",
 
         //decoration
-        background_color : "#fff",
-        line_color : "#8e8e8e",
-        focus_border_color : "#C38707",
-        common_border_color : "#fac75b",
+        background_color : "#6f916f",
+        line_color : "#fff",
+        focus_border_color : "#8CF56A",
         focus_border_width : 2,
-        common_border_width : 1,
 
         //ancestor_color
-        anc_element_color : "#fac75b",
-        anc_text_color : "#fff",
+        anc_element_color : "#D1A4A4",
+        anc_text_color : "#63F9FB",
 
         //child_color
-        ch_element_color : "#FEE4C2",
-        ch_text_color : "#000",
+        ch_element_color : "#C37373",
+        ch_text_color : "#fff",
 
         //element_margin
-        father_child_margin : 20,
-        brother_margin : 15,
+        father_child_margin : 50,
+        brother_margin : 25,
 
         //ancestor_size
-        anc_element_width : 80,
-        anc_element_height : 35,
+        anc_element_width : 140,
+        anc_element_height : 40,
 
         //child_size
-        ch_element_width : 60,
-        ch_element_height : 25,
+        ch_element_width : 90,
+        ch_element_height : 30,
 
         //else
         background_img : "none"
     },
     theme_circle : {
         //shape
-        ancestor_shape : "circle",
-        child_shape : "capsule",
+        ancestor_shape : "rectangle",
+        child_shape : "rectangle",
         line_shape : "straight",
 
         //decoration
-        background_color : "#4CDBF4",
-        line_color : "#667b99",
-        focus_border_color : "#C38707",
+        background_color : "#8e8e8e",
+        line_color : "#fff",
+        focus_border : "#fff",
         focus_border_width : 2,
-        common_border_width : 1,
 
         //ancestor_color
-        anc_element_color : "#e8e88e",
-        anc_text_color : "#D4C070",
+        anc_element_color : "rgba(52,67,112,0.5)",
+        anc_text_color : "#fff",
 
         //child_color
-        ch_element_color : "#88F6AE",
-        ch_text_color : "#000",
+        ch_element_color : "#8e8e8e",
+        ch_text_color : "#99ca6a",
 
         //element_margin
         father_child_margin : 50,
-        brother_margin : 15,
+        brother_margin : 25,
 
         //ancestor_size
         anc_element_width : 90,
         anc_element_height : 90,
 
         //child_size
-        ch_element_width : 60,
-        ch_element_height : 27,
+        ch_element_width : 80,
+        ch_element_height : 40,
+
+        //else
+        background_img : "none"
+    },
+    theme_classic : {
+        //shape
+        ancestor_shape : "circle",
+        child_shape : "capsule",
+        line_shape : "straight",
+
+        //decoration
+        background_color : "#667b99",
+        line_color : "#4cdbf4",
+        focus_border : "#000",
+        focus_border_width : 2,
+        
+        //ancestor_color
+        anc_element_color : "#e8e88e",
+        anc_text_color : "#D88119",
+
+        //child_color
+        ch_element_color : "#667b99",
+        ch_text_color : "rgba(252,106,221,0.9)",
+
+        //element_margin
+        father_child_margin : 50,
+        brother_margin : 25,
+
+        //ancestor_size
+        anc_element_width : 140,
+        anc_element_height : 40,
+
+        //child_size
+        ch_element_width : 90,
+        ch_element_height : 30,
 
         //else
         background_img : "none"
