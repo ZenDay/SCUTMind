@@ -202,6 +202,34 @@ $(document).ready(function() {
     canvas.addEventListener('touchend', function() {
         isMove = false;
     });
+    function touchStart(e) {
+        isMove = true;
+        e.preventDefault();
+        x = e.touches[0].pageX;
+        y = e.touches[0].pageY;
+    }
+    function touchMove(e) {
+        var position = [];
+        if (isMove) {
+            e.preventDefault();
+            position[0] = (e.touches[0].pageX - x);
+            position[1] = (e.touches[0].pageY - y);
+            SCUTMind.rootNode.position[0] += position[0];
+            SCUTMind.rootNode.position[1] += position[1];
+            SCUTMind.updateAllArea(SCUTMind.rootNode);
+            for (var i = 0; i < 10; i++) {
+                if (SCUTMind.currPattern == SCUTMind.patterns.default)
+                    SCUTMind.updatePosition(SCUTMind.rootNode, SCUTMind.rootNode.position[1] - SCUTMind.rootNode.area[1] / 2);
+                else
+                    SCUTMind.updatePosition(SCUTMind.rootNode, SCUTMind.rootNode.position[0] - SCUTMind.rootNode.area[0] / 2);
+                SCUTMind.updateScope(SCUTMind.rootNode);
+            }
+            cxt.clearRect(0, 0, canvas.width, canvas.height);
+            SCUTMind.draws(cxt, SCUTMind.rootNode);
+            x = e.touches[0].pageX;
+            y = e.touches[0].pageY;
+        }
+    }
 });
 function hideOrShowSelect(v) {
     var allselect = document.getElementsByTagName("select");
@@ -226,31 +254,4 @@ function adjustLocation() {
         obox.style.top=oTop;
     }
 }
-function touchStart(e) {
-    isMove = true;
-    e.preventDefault();
-    x = e.touches[0].pageX;
-    y = e.touches[0].pageY;
-}
-function touchMove(e) {
-    var position = [];
-    if (isMove) {
-        e.preventDefault();
-        position[0] = (e.touches[0].pageX - x);
-        position[1] = (e.touches[0].pageY - y);
-        SCUTMind.rootNode.position[0] += position[0];
-        SCUTMind.rootNode.position[1] += position[1];
-        SCUTMind.updateAllArea(SCUTMind.rootNode);
-        for (var i = 0; i < 10; i++) {
-            if (SCUTMind.currPattern == SCUTMind.patterns.default)
-                SCUTMind.updatePosition(SCUTMind.rootNode, SCUTMind.rootNode.position[1] - SCUTMind.rootNode.area[1] / 2);
-            else
-                SCUTMind.updatePosition(SCUTMind.rootNode, SCUTMind.rootNode.position[0] - SCUTMind.rootNode.area[0] / 2);
-            SCUTMind.updateScope(SCUTMind.rootNode);
-        }
-        cxt.clearRect(0, 0, canvas.width, canvas.height);
-        SCUTMind.draws(cxt, SCUTMind.rootNode);
-        x = e.touches[0].pageX;
-        y = e.touches[0].pageY;
-    }
-}
+
