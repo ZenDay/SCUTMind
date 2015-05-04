@@ -64,20 +64,14 @@
     </aside>
 
     <div id="divBox" class="hideDlg" style="" >
-        <table width="100%" style="height:100%; width: 100%;" id="table1">
-            <tr>
-                <td id="head" colspan="3">Text</td>
-            </tr>
-            <tr>
-                <td>
-                    <input id="textbox" name="TextBox1" type="text" id="TextBox1" maxlength="8" value="输入少于8的文字" onfocus="javascript:if(this.value=='输入少于8的文字')this.value='';" onblur="javascript:if(this.value=='')this.value='输入少于8的文字';" onkeyup="value=value.replace(/[^\u4E00-\u9FA5]/g,'')" onpaste="value=value.replace(/[^\u4E00-\u9FA5]/g,'')" oncontextmenu = "value=value.replace(/[^\u4E00-\u9FA5]/g,'')"  />
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <a href="#" id="OK" class="button" onclick=""><img src="pattern/ok.png"></a>
-                </td>
-            </tr>
+        <table style="height:100%; width: 100%;" id="table1">
+            <td id="head" colspan="3">Text</td>
+            <td id="b">
+                <input id="textbox" name="TextBox1" type="text" id="TextBox1" maxlength="8" value="输入少于8的文字" onfocus="javascript:if(this.value=='输入少于8的文字')this.value='';" onblur="javascript:if(this.value=='')this.value='输入少于8的文字';" onkeyup="value=value.replace(/[^\u4E00-\u9FA5]/g,'')" onpaste="value=value.replace(/[^\u4E00-\u9FA5]/g,'')" oncontextmenu = "value=value.replace(/[^\u4E00-\u9FA5]/g,'')"  />
+            </td>
+            <td id="t">
+                <a href="#" id="OK" class="button"><img src="pattern/ok.png"></a>
+            </td>
         </table>
     </div>
 

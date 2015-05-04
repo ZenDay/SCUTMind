@@ -102,9 +102,6 @@ $(document).ready(function() {
         
         //改变样式
         document.getElementById('divBox').className='showDlg';
-        
-        //调整位置至居中
-        adjustLocation();
     });
     $('.delete-btn').click(function(){
         if(SCUTMind.currNode.type == "main"){
@@ -228,23 +225,6 @@ function hideOrShowSelect(v) {
     var allselect = document.getElementsByTagName("select");
     for (var i=0; i<allselect.length; i++) {
         allselect[i].disabled =(v==true)?"disabled":"";
-    }
-}
-function adjustLocation() {
-    var obox=document.getElementById('divBox');
-    if (obox !=null && obox.style.display !="none") {
-        var oLeft,oTop;
-        if (window.innerWidth) {
-            oLeft=(window.pageXOffset+window.innerWidth/2)*0.5+"px";
-            oTop=(window.pageYOffset+window.innerHeight/2)*0.65 +"px";
-        }
-        else {
-            var dde=document.documentElement;
-            oLeft=dde.scrollLeft+(dde.offsetWidth-w)/2 +"px";
-            oTop=dde.scrollTop+(dde.offsetHeight-h)/2 +"px";
-        }
-        obox.style.left=oLeft;
-        obox.style.top=oTop;
     }
 }
 
