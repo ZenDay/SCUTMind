@@ -763,6 +763,15 @@ SCUTMind.getMousePos = function(canvas, event) {
     return mousePos;
  };
 
+SCUTMind.getMousePosInPC = function(canvas, event) {
+    var rect = canvas.getBoundingClientRect();
+    var mousePos = [
+        parseInt(event.clientX * (canvas.width / rect.width)),
+        parseInt(event.clientY * (canvas.height / rect.height))
+    ];
+    return mousePos;
+ };
+
 /*
  @method updateCurrNode.
  @param node {MindNode} the rootNode of the SCUTMind.
