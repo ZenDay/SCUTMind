@@ -124,7 +124,7 @@ $(document).ready(function() {
     });
     $('.swiper-slide a').click(function(){
         var this_id = $(this).attr("id");
-        if(this_id == "gray")
+        if(this_id == "blue")
             SCUTMind.currTheme = SCUTMind.themes.default;
         else if(this_id == "green")
             SCUTMind.currTheme = SCUTMind.themes.theme_green;
@@ -132,8 +132,8 @@ $(document).ready(function() {
             SCUTMind.currTheme = SCUTMind.themes.theme_pink;
         else if(this_id == "purple")
             SCUTMind.currTheme = SCUTMind.themes.theme_purple;
-        else if(this_id == "blue")
-            SCUTMind.currTheme = SCUTMind.themes.theme_blue;
+        else if(this_id == "gray")
+            SCUTMind.currTheme = SCUTMind.themes.theme_gray;
         else if(this_id == "yellow")
             SCUTMind.currTheme = SCUTMind.themes.theme_yellow;
         else if(this_id == "classic")

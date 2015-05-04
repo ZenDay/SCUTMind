@@ -22,6 +22,43 @@ SCUTMind.themes = {
 
         //decoration
         background_color : "#fff",
+        line_color : "#ccc",
+        focus_border_color : "#1129BC",
+        common_border_color : "#B3E7FF",
+        focus_border_width : 2,
+        common_border_width : 1,
+
+        //ancestor_color
+        anc_element_color : "#B3E7FF",
+        anc_text_color : "#1DA934",
+
+        //child_color
+        ch_element_color : "#fff",
+        ch_text_color : "#3bbce0",
+
+        //element_margin
+        father_child_margin : 75,
+        brother_margin : 30,
+
+        //ancestor_size
+        anc_element_width : 125,
+        anc_element_height : 30,
+
+        //child_size
+        ch_element_width : 80,
+        ch_element_height : 20,
+
+        //else
+        background_img : "none"
+    },
+    theme_gray : {
+        //shape
+        ancestor_shape : "rectangle",
+        child_shape : "rectangle",
+        line_shape : "straight",
+
+        //decoration
+        background_color : "#fff",
         line_color : "rgba(226,226,226,0.8)",
         focus_border_color : "#000",
         common_border_color : "#8e8e8e",
@@ -145,43 +182,6 @@ SCUTMind.themes = {
         //child_color
         ch_element_color : "#fff",
         ch_text_color : "#9222dd",
-
-        //element_margin
-        father_child_margin : 75,
-        brother_margin : 30,
-
-        //ancestor_size
-        anc_element_width : 125,
-        anc_element_height : 30,
-
-        //child_size
-        ch_element_width : 80,
-        ch_element_height : 20,
-
-        //else
-        background_img : "none"
-    },
-    theme_blue : {
-        //shape
-        ancestor_shape : "rectangle",
-        child_shape : "rectangle",
-        line_shape : "straight",
-
-        //decoration
-        background_color : "#fff",
-        line_color : "#ccc",
-        focus_border_color : "#1129BC",
-        common_border_color : "#B3E7FF",
-        focus_border_width : 2,
-        common_border_width : 1,
-
-        //ancestor_color
-        anc_element_color : "#B3E7FF",
-        anc_text_color : "#1DA934",
-
-        //child_color
-        ch_element_color : "#fff",
-        ch_text_color : "#3bbce0",
 
         //element_margin
         father_child_margin : 75,
