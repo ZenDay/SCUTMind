@@ -757,8 +757,8 @@ SCUTMind.updateAllArea = function(node){
 SCUTMind.getMousePos = function(canvas, event) {
     var rect = canvas.getBoundingClientRect();
     var mousePos = [
-        parseInt(event.clientX * (canvas.width / rect.width)),
-        parseInt(event.clientY * (canvas.height / rect.height))
+        parseInt(event.touches[0].clientX * (canvas.width / rect.width)),
+        parseInt(event.touches[0].clientY * (canvas.height / rect.height))
     ];
     return mousePos;
  };

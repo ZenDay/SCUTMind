@@ -181,22 +181,20 @@ $(document).ready(function() {
         document.getElementById("deck").className="hideDeck";
         hideOrShowSelect(false);
     });
-    canvas.addEventListener("click", function (event) {
-        var mousePos = SCUTMind.getMousePos(canvas, event);
-        SCUTMind.updateCurrNode(SCUTMind.rootNode, mousePos);
-        cxt.clearRect(0,0,canvas.width,canvas.height);
-		SCUTMind.draws(cxt, SCUTMind.rootNode);
-    }, false);
     canvas.addEventListener('touchstart', touchStart);
     canvas.addEventListener('touchmove', touchMove);
     canvas.addEventListener('touchend', function() {
         isMove = false;
-    });
+        SCUTMind.updateCurrNode(SCUTMind.rootNode, mousePos);
+        cxt.clearRect(0,0,canvas.width,canvas.height);
+		SCUTMind.draws(cxt, SCUTMind.rootNode);
+    },false);
     function touchStart(e) {
         isMove = true;
         e.preventDefault();
         x = e.touches[0].pageX;
         y = e.touches[0].pageY;
+        mousePos = SCUTMind.getMousePos(canvas, e);
     }
     function touchMove(e) {
         var position = [];
