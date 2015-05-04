@@ -54,7 +54,7 @@ $(document).ready(function() {
 	});
 	$('.sibling-btn').click(function(event) {
         if(SCUTMind.currNode.type == "main"){
-            alert("You can't add a sibling element of the rootNode");
+            alert("不能有多个中心主题！");
             return false;
         }
 		var newNode = new MindNode("child",SCUTMind.currNode.parent, [0,0]);
@@ -105,7 +105,7 @@ $(document).ready(function() {
     });
     $('.delete-btn').click(function(){
         if(SCUTMind.currNode.type == "main"){
-            alert("You can't delete the rootNode!");
+            alert("您不能删除中心主题！");
             return false;
         }
         var newCurrNode = SCUTMind.currNode.parent;
