@@ -24,6 +24,9 @@ a{
    display: block;
 }
 
+#canvas:hover{
+    cursor: pointer;
+}
 
 .toolBar a{
 	display: block;
