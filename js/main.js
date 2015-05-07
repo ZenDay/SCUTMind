@@ -4,6 +4,7 @@
 $(document).ready(function() {
     var canvas = document.getElementById('canvas');
     var cxt = canvas.getContext('2d');
+    var moving = false;
     $('.pattern').click(function(){
         var this_id = $(this).attr("id");
         if((this_id=="right" && SCUTMind.currPattern==SCUTMind.patterns.default)||
@@ -182,30 +183,66 @@ $(document).ready(function() {
         hideOrShowSelect(false);
     });
     if(IsPC()){
-        canvas.addEventListener("click", function (event) {
-            var mousePos = SCUTMind.getMousePosInPC(canvas, event);
+        //canvas.addEventListener("click", function (event) {
+        //    var mousePos = SCUTMind.getMousePosInPC(canvas, event);
+        //    SCUTMind.updateCurrNode(SCUTMind.rootNode, mousePos);
+        //    cxt.clearRect(0,0,canvas.width,canvas.height);
+        //    SCUTMind.draws(cxt, SCUTMind.rootNode);
+        //}, false);
+        canvas.addEventListener("mousedown", clickDown);
+        canvas.addEventListener("mousemove", clickMove);
+        canvas.addEventListener("mouseup", function(){
+            moving = false;
             SCUTMind.updateCurrNode(SCUTMind.rootNode, mousePos);
-            cxt.clearRect(0,0,canvas.width,canvas.height);
+            cxt.clearRect(0, 0, canvas.width, canvas.height);
             SCUTMind.draws(cxt, SCUTMind.rootNode);
         }, false);
     }
-    canvas.addEventListener('touchstart', touchStart);
-    canvas.addEventListener('touchmove', touchMove);
-    canvas.addEventListener('touchend', function() {
-        isMove = false;
-        if(!IsPC()){
+    else {
+        canvas.addEventListener('touchstart', touchStart);
+        canvas.addEventListener('touchmove', touchMove);
+        canvas.addEventListener('touchend', function () {
+            isMove = false;
             SCUTMind.updateCurrNode(SCUTMind.rootNode, mousePos);
-            cxt.clearRect(0,0,canvas.width,canvas.height);
-    		SCUTMind.draws(cxt, SCUTMind.rootNode);
+            cxt.clearRect(0, 0, canvas.width, canvas.height);
+            SCUTMind.draws(cxt, SCUTMind.rootNode);
+        }, false);
+    }
+    function clickDown(e){
+        moving = true;
+        e.preventDefault();
+        x = e.pageX;
+        y = e.pageY;
+        mousePos = SCUTMind.getMousePosInPC(canvas, e);
+    }
+    function clickMove(e){
+        var position = [];
+        if (moving) {
+            e.preventDefault();
+            position[0] = (e.pageX - x);
+            position[1] = (e.pageY - y);
+            SCUTMind.rootNode.position[0] += position[0];
+            SCUTMind.rootNode.position[1] += position[1];
+            SCUTMind.updateAllArea(SCUTMind.rootNode);
+            for (var i = 0; i < 10; i++) {
+                if (SCUTMind.currPattern == SCUTMind.patterns.default)
+                    SCUTMind.updatePosition(SCUTMind.rootNode, SCUTMind.rootNode.position[1] - SCUTMind.rootNode.area[1] / 2);
+                else
+                    SCUTMind.updatePosition(SCUTMind.rootNode, SCUTMind.rootNode.position[0] - SCUTMind.rootNode.area[0] / 2);
+                SCUTMind.updateScope(SCUTMind.rootNode);
+            }
+            cxt.clearRect(0, 0, canvas.width, canvas.height);
+            SCUTMind.draws(cxt, SCUTMind.rootNode);
+            x = e.pageX;
+            y = e.pageY;
         }
-    },false);
+    }
     function touchStart(e) {
         isMove = true;
         e.preventDefault();
         x = e.touches[0].pageX;
         y = e.touches[0].pageY;
-        if(!IsPC())
-            mousePos = SCUTMind.getMousePos(canvas, e);
+        mousePos = SCUTMind.getMousePos(canvas, e);
     }
     function touchMove(e) {
         var position = [];
@@ -236,8 +273,7 @@ function hideOrShowSelect(v) {
         allselect[i].disabled =(v==true)?"disabled":"";
     }
 }
-function IsPC()  
-{  
+function IsPC() {
    var userAgentInfo = navigator.userAgent;  
    var Agents = new Array("Android", "iPhone", "SymbianOS", "Windows Phone", "iPad", "iPod");  
    var flag = true;  
