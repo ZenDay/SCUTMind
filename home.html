@@ -67,7 +67,7 @@
         <div style="height:100%; width: 100%;" id="table1">
             <div id="head"><img class="text" src="pattern/text.png"></div>
             <div id="b">
-                <input id="textbox" name="TextBox1" type="text" maxlength="8" onkeyup="value=value.replace(/[^\u4E00-\u9FA5]/g,'')" onpaste="value=value.replace(/[^\u4E00-\u9FA5]/g,'')" oncontextmenu = "value=value.replace(/[^\u4E00-\u9FA5]/g,'')"  />
+                <input id="textbox" name="TextBox1" type="text" maxlength="8" onfocus="javascript:value=''" onkeyup="value=value.replace(/[^\u4E00-\u9FA5]/g,'')" onpaste="value=value.replace(/[^\u4E00-\u9FA5]/g,'')" oncontextmenu = "value=value.replace(/[^\u4E00-\u9FA5]/g,'')"  />
             </div>
             <div id="t">
                <a href="#" id="OK" class="button"><img class="ok" src="pattern/ok.png"></a> 
@@ -77,51 +77,51 @@
 
 	<script src="js/swiper.min.js"></script>
 	<script type="text/javascript">
-	window.onload = function(){
-        //调整canvas的宽高
-        var bodyWidth = $("#toolBar").width();
-        var bodyHeight = $("body").height();
-        var toolBarHeight = $("#toolBar").height();
-        var selectionBarHeight = $("#selectionBar").height();
-        $("#canvas").width(bodyWidth);
-        $("#canvas").height(bodyHeight-toolBarHeight-selectionBarHeight-1);
-        //调整工具栏图片margin，使之垂直居中
-        var toolBar_tag_a = document.getElementById("toolBar").getElementsByTagName("a");
-        var toolBar_img = document.getElementById("toolBar").getElementsByTagName("img");
-        var aHeight;
-        var imgHeight;
-        var padTop2;
-        for(var j = 0; j < toolBar_tag_a.length; j++){
-            aHeight = toolBar_tag_a[j].offsetHeight;
-            imgHeight = toolBar_img[j].offsetHeight;
-            padTop2 = (aHeight-imgHeight)*0.8;
-            toolBar_img[j].style.marginTop = padTop2+"px";
-        }
-        //调整主题margin，使之垂直居中 & 调整主题文字lineheight，使文字垂直居中
-        var colorBar_tag_a = document.getElementById("color").getElementsByTagName("a");
-        var colorBar = document.getElementById("color");
-        var colorBar_tag_a_height;
-        var colorBar_height;
-        colorBar_height = colorBar.offsetHeight;
-        for(var i = 0; i < colorBar_tag_a.length; i++){
-            colorBar_tag_a_height = colorBar_tag_a[i].offsetHeight;
-            var margintop = (colorBar_height - colorBar_tag_a_height) * 0.5;
-            colorBar_tag_a[i].style.marginTop = margintop + "px";
-            colorBar_tag_a[i].style.lineHeight  = colorBar_tag_a_height + "px";
-            colorBar_tag_a[i].style.height = colorBar_tag_a_height + "px";
-        }
-        var canvas = document.getElementById('canvas');
-        var cxt = canvas.getContext('2d');
-        var rect = canvas.getBoundingClientRect();
-        canvas.width = (rect.right-rect.left)*1.5;
-        canvas.height = (rect.bottom-rect.top)*1.5;
-        SCUTMind.init(cxt, canvas.width, canvas.height, 2000, 2000);
+        window.onload = function(){
+            //调整canvas的宽高
+            var bodyWidth = $("#toolBar").width();
+            var bodyHeight = $("body").height();
+            var toolBarHeight = $("#toolBar").height();
+            var selectionBarHeight = $("#selectionBar").height();
+            $("#canvas").width(bodyWidth);
+            $("#canvas").height(bodyHeight-toolBarHeight-selectionBarHeight-1);
+            //调整工具栏图片margin，使之垂直居中
+            var toolBar_tag_a = document.getElementById("toolBar").getElementsByTagName("a");
+            var toolBar_img = document.getElementById("toolBar").getElementsByTagName("img");
+            var aHeight;
+            var imgHeight;
+            var padTop2;
+            for(var j = 0; j < toolBar_tag_a.length; j++){
+                aHeight = toolBar_tag_a[j].offsetHeight;
+                imgHeight = toolBar_img[j].offsetHeight;
+                padTop2 = (aHeight-imgHeight)*0.8;
+                toolBar_img[j].style.marginTop = padTop2+"px";
+            }
+            //调整主题margin，使之垂直居中 & 调整主题文字lineheight，使文字垂直居中
+            var colorBar_tag_a = document.getElementById("color").getElementsByTagName("a");
+            var colorBar = document.getElementById("color");
+            var colorBar_tag_a_height;
+            var colorBar_height;
+            colorBar_height = colorBar.offsetHeight;
+            for(var i = 0; i < colorBar_tag_a.length; i++){
+                colorBar_tag_a_height = colorBar_tag_a[i].offsetHeight;
+                var margintop = (colorBar_height - colorBar_tag_a_height) * 0.5;
+                colorBar_tag_a[i].style.marginTop = margintop + "px";
+                colorBar_tag_a[i].style.lineHeight  = colorBar_tag_a_height + "px";
+                colorBar_tag_a[i].style.height = colorBar_tag_a_height + "px";
+            }
+            var canvas = document.getElementById('canvas');
+            var cxt = canvas.getContext('2d');
+            var rect = canvas.getBoundingClientRect();
+            canvas.width = (rect.right-rect.left)*1.5;
+            canvas.height = (rect.bottom-rect.top)*1.5;
+            SCUTMind.init(cxt, canvas.width, canvas.height, 2000, 2000);
 
-        var swiper = new Swiper('.swiper-container', {
-            slidesPerView: 3,
-            freeMode: true
-        });
-    };
+            var swiper = new Swiper('.swiper-container', {
+                slidesPerView: 3,
+                freeMode: true
+            });
+        };
 	</script>
     <script type="text/javascript" src="js/main.js"></script>
 </body>
