@@ -8,20 +8,23 @@
     background:rgba(210,210,210,0.7);  
     z-index: 2; 
 }
+
+
 @media(min-width: 768px) {
     #aside {
         position: absolute;
         top: 0;
         bottom: 0;
         left: -27%;
-        width: 7%;
+        width: 8%;
         height: 100%;
-        background: rgba(255, 255, 255, 0.8);
+        background: rgba(255, 255, 255, 1);
         transition: 0.2s ease-out;
         -webkit-transition: 0.2s ease-out;
         z-index: 4;
     }
 }
+
 @media(max-width: 767px){
      #aside {
         position: absolute;
@@ -29,13 +32,15 @@
         bottom: 0;
         left: -27%;
         width: 27%;
-        height: 100%;
-        background: rgba(255, 255, 255, 0.8);
+        height: 84%;
+        background: rgba(255, 255, 255, 1);
         transition: 0.2s ease-out;
         -webkit-transition: 0.2s ease-out;
         z-index: 4;
     }
 }
+
+
 body > aside > h2
 { 
     height:8%;
@@ -62,15 +67,12 @@ h2 > img
 {
     height:33%;
 }
-#patterns a
-{
-    height: 100%;
-}
+
 #patterns img
 {
-    height:40%;
+    height:auto;
     width:100%;
-    margin-top:30%;
+    margin-top:20%;
 }
 
 /*#patterns img.save
@@ -112,7 +114,6 @@ h2 > img
     position:relative;
     top:20%;
     text-align: center;
-    color: #ccc;
     margin-left:7%;
     font-size: 100%;
     /*border-radius:5px 5px 5px 5px;*/
@@ -138,23 +139,41 @@ h2 > img
     height:100%;
 }
 
+@media(max-width: 767px) {
+    .showDlg
+    {
+        background-color:#e1e4e5;
+        height:100px;
+        width:54%;
+        position: absolute; 
+        top:35%;
+        left:23%;
+        border-radius:5px 5px 5px 5px;
+        display:block;
+        z-index:5;
+    }
+}
+
+@media(min-width: 768px) {
+    .showDlg
+    {
+        background-color:#e1e4e5;
+        height:130px;
+        width:30%;
+        position: absolute; 
+        top:35%;
+        left:35%;
+        border-radius:5px 5px 5px 5px;
+        display:block;
+        z-index:5;
+    }
+}
+
+    
 .hideDlg
 {
     height:15%;width:50%;
     display:none;
-}
-
-.showDlg
-{
-    background-color:#e1e4e5;
-    height:15%;
-    width:50%;
-    position: absolute; 
-    top:35%;
-    left:25%;
-    border-radius:5px 5px 5px 5px;
-    display:block;
-    z-index:5;
 }
 
 .showDeck 
