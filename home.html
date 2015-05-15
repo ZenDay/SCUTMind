@@ -144,20 +144,22 @@
         }  
         window.onmousewheel = document.onmousewheel = wheel;  
         var handle = function(delta) {  
-            if (delta < 0) {  
-                canvas.width *= 0.99;
-                canvas.height *= 0.99;
-                cxt.clearRect(0, 0, canvas.width, canvas.height);
-                SCUTMind.draws(cxt, SCUTMind.rootNode);
-                return false;  
+            if (delta < 0) {
+                if(canvas.width*0.99>200 && canvas.height*0.99>200) {
+                    canvas.width *= 0.99;
+                    canvas.height *= 0.99;
+                    cxt.clearRect(0, 0, canvas.width, canvas.height);
+                    SCUTMind.draws(cxt, SCUTMind.rootNode);
+                }
             }
             else {
                 canvas.width *= 1.01;
                 canvas.height *= 1.01;
                 cxt.clearRect(0, 0, canvas.width, canvas.height);
                 SCUTMind.draws(cxt, SCUTMind.rootNode);
-                return false;  
-            }  
+            }
+            console.log(canvas.width+" "+canvas.height);
+            return false;
         }  
 	</script>
     <script type="text/javascript" src="js/main.js"></script>

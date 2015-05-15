@@ -284,8 +284,10 @@ $(document).ready(function() {
             x2 = e.touches[1].pageX;
             y2 = e.touches[1].pageY;
             if((x-x2)*(x-x2)+(y-y2)*(y-y2)>length){
-                canvas.width *= 0.99;
-                canvas.height *= 0.99;
+                if(canvas.width*0.99>200 && canvas.height*0.99>200) {
+                    canvas.width *= 0.99;
+                    canvas.height *= 0.99;
+                }
             }
             else if((x-x2)*(x-x2)+(y-y2)*(y-y2)<length){
                 canvas.width *= 1.01;
