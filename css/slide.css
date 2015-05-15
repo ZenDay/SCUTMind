@@ -110,28 +110,27 @@ h2 > img
 #textbox
 {
     height:50%;
-    width:85%;
+    width:86%;
     position:relative;
     top:20%;
     text-align: center;
     margin-left:7%;
     font-size: 100%;
-    /*border-radius:5px 5px 5px 5px;*/
-    display:block;
-    border:2px solid #ffffff;
+    border:0;
 }
 
 .button
 {
     height:75%;
-    width:35%;
+    width:34%;
     position:relative;
+    top:0%;
     margin-left:33%;
     text-align: center;
     background:#66cccc;
     border-radius:3px 3px 3px 3px;
-    border-style:1px solid #66cccc;
-    display:block;
+    border:0;
+    display:inline-block;
 }
 
 .button img
