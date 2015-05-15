@@ -201,8 +201,13 @@ $(document).ready(function() {
     else {
         canvas.addEventListener('touchstart', touchStart);
         canvas.addEventListener('touchmove', touchMove);
-        canvas.addEventListener('touchend', function () {
-            isMove = false;
+        canvas.addEventListener('touchend', function (e) {
+            if(!e.touches[1]) {
+                isMove = false;
+            }
+            else{
+                isMove2 = false;
+            }
             SCUTMind.updateCurrNode(SCUTMind.rootNode, mousePos);
             cxt.clearRect(0, 0, canvas.width, canvas.height);
             SCUTMind.draws(cxt, SCUTMind.rootNode);
@@ -238,16 +243,24 @@ $(document).ready(function() {
         }
     }
     function touchStart(e) {
-        isMove = true;
         e.preventDefault();
-        x = e.touches[0].pageX;
-        y = e.touches[0].pageY;
+        if(!e.touches[1]) {
+            isMove = true;
+            x = e.touches[0].pageX;
+            y = e.touches[0].pageY;
+        }
+        else{
+            isMove2 = true;
+            x2 = e.touches[1].pageX;
+            y2 = e.touches[1].pageY;
+            length = (x-x2)*(x-x2) + (y-y2)*(y-y2);
+        }
         mousePos = SCUTMind.getMousePos(canvas, e);
     }
     function touchMove(e) {
-        var position = [];
-        if (isMove) {
-            e.preventDefault();
+        e.preventDefault();
+        if (isMove && !e.touches[1]) {
+            var position = [];
             position[0] = (e.touches[0].pageX - x);
             position[1] = (e.touches[0].pageY - y);
             SCUTMind.rootNode.position[0] += position[0];
@@ -264,6 +277,23 @@ $(document).ready(function() {
             SCUTMind.draws(cxt, SCUTMind.rootNode);
             x = e.touches[0].pageX;
             y = e.touches[0].pageY;
+        }
+        else if(isMove && e.touches[1]){
+            x = e.touches[0].pageX;
+            y = e.touches[0].pageY;
+            x2 = e.touches[1].pageX;
+            y2 = e.touches[1].pageY;
+            if((x-x2)*(x-x2)+(y-y2)*(y-y2)>length){
+                canvas.width *= 0.99;
+                canvas.height *= 0.99;
+            }
+            else if((x-x2)*(x-x2)+(y-y2)*(y-y2)<length){
+                canvas.width *= 1.01;
+                canvas.height *= 1.01;
+            }
+            cxt.clearRect(0, 0, canvas.width, canvas.height);
+            SCUTMind.draws(cxt, SCUTMind.rootNode);
+            length = (x-x2)*(x-x2) + (y-y2)*(y-y2);
         }
     }
 });
